@@ -1,0 +1,237 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.AdminDash
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+@if (ViewBag.error != null)
+{
+    <p style="color:orangered">@Html.Raw(ViewBag.error)</p>
+}
+else
+{
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        selectmenu(1);
+
+    });
+    </script>
+
+    <style>
+        .infoDiv {
+            height: 175px;
+            width: 275px;
+            -webkit-user-select: none;
+        }
+
+        .info_das {
+            height: 100px;
+            width: 400px;
+        }
+
+        .info-box {
+            padding: 20px 26px !important;
+            background: #BABABA !important;
+            color: #000000;
+            margin-bottom: 5px;
+            align-content: center;
+        }
+
+        .theme-blue-color {
+            color: #0069aa !important;
+            font-size: 30px !important;
+        }
+
+        #infobox .well {
+            background-color: transparent;
+            box-shadow: none !important;
+            border: none;
+            border-radius: 0;
+            border: 1px solid #AEAEAE;
+            min-height: 120px !important;
+            padding: 14px !important;
+        }
+
+        #infobox .footertext {
+            font-size: 16px !important;
+        }
+
+        #infobox .val {
+            font-size: 20px !important;
+        }
+    </style>
+
+    <style>
+        .ClickDiv {
+            transition: 1s;
+        }
+
+            .ClickDiv:hover {
+                background-color: #d8d8d8;
+                transition: 1s;
+            }
+
+        .ClickDivZero {
+            transition: 1s;
+        }
+
+            .ClickDivZero:hover {
+                background-color: #f5c4c4;
+                transition: 1s;
+        }
+    </style>
+
+    <a style="margin-right:10px;" class="btnEditDeleteLead  btn btn-blue pull-right" href="@Url.Action("AddComplain","Admin")"><span class="glyphicon glyphicon-arrow-left"></span> ADD COMPLAIN </a>
+ 
+    <div class="col-md-12" id="leadsDiv">
+        <div class="margin">
+            <div class="row form">
+                
+                    <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <div class="ClickDivZero">
+                            <div id="PIPELINE" class="well" title="NUMBER OF USERS IN THE SYSTEM">
+                                <div class="row">
+                                    <div id="PIPELINE" class="col-lg-1"></div>
+                                    <div id="PIPELINE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">NUMBER OF USERS </h4></div>
+                                    <div id="PIPELINE" class="col-lg-3"><i class="fa fa-hand-o-right fa-2xx theme-blue-color"></i></div>
+                                    <div id="PIPELINE" class="col-lg-1"></div>
+                                </div>
+                                <div class="row">
+                                    <div id="PIPELINE" class="col-lg-5"></div>
+                                    <div id="PIPELINE" class="col-lg-2"><h3 class="val"> @Html.DisplayFor(m => m.NoofUsers) </h3></div>
+                                    <div id="PIPELINE" class="col-lg-5"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="ClickDivZero">
+                        <div id="STAGE" class="well" title="NUMBER OF DEMOS SCHEDULED">
+                            <div class="row">
+                                <div id="STAGE" class="col-lg-1"></div>
+                                <div id="STAGE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">NUMBER OF LOCATIONS </h4></div>
+                                <div id="STAGE" class="col-lg-3"><i class="fa fa-play-circle-o fa-2xx theme-blue-color"></i></div>
+                                <div id="STAGE" class="col-lg-1"></div>
+                            </div>
+                            <div class="row">
+                                <div id="SIGNUPS" class="col-lg-5"></div>
+                                <div id="SIGNUPS" class="col-lg-2"><h3 class="val"> @Model.NoofLocations </h3></div>
+                                <div id="SIGNUPS" class="col-lg-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="ClickDivZero">
+                        <div id="PIPELINE" class="well" title="NUMBER OF USERS IN THE SYSTEM">
+                            <div class="row">
+                                <div id="PIPELINE" class="col-lg-1"></div>
+                                <div id="PIPELINE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">NUMBER OF MAIN ASSESTS </h4></div>
+                                <div id="PIPELINE" class="col-lg-3"><i class="fa fa fa-sign-in fa-2xx theme-blue-color"></i></div>
+                                <div id="PIPELINE" class="col-lg-1"></div>
+                            </div>
+                            <div class="row">
+                                <div id="PIPELINE" class="col-lg-5"></div>
+                                <div id="PIPELINE" class="col-lg-2"><h3 class="val"> @Html.DisplayFor(m => m.NoofMainCat) </h3></div>
+                                <div id="PIPELINE" class="col-lg-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="ClickDivZero">
+                        <div id="STAGE" class="well" title="NUMBER OF DEMOS SCHEDULED">
+                            <div class="row">
+                                <div id="STAGE" class="col-lg-1"></div>
+                                <div id="STAGE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">NUMBER OF SUB ASSESTS </h4></div>
+                                <div id="STAGE" class="col-lg-3"><i class="fa fa-star fa-2xx theme-blue-color"></i></div>
+                                <div id="STAGE" class="col-lg-1"></div>
+                            </div>
+                            <div class="row">
+                                <div id="SIGNUPS" class="col-lg-5"></div>
+                                <div id="SIGNUPS" class="col-lg-2"><h3 class="val"> @Model.NoOfSubCat </h3></div>
+                                <div id="SIGNUPS" class="col-lg-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="ClickDivZero">
+                        <div id="PIPELINE" class="well" title="NUMBER OF USERS IN THE SYSTEM">
+                            <div class="row">
+                                <div id="PIPELINE" class="col-lg-1"></div>
+                                <div id="PIPELINE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">NUMBER OF PRODUCTS </h4></div>
+                                <div id="PIPELINE" class="col-lg-3"><i class="fa fa-eye-slash fa-2xx theme-blue-color"></i></div>
+                                <div id="PIPELINE" class="col-lg-1"></div>
+                            </div>
+                            <div class="row">
+                                <div id="PIPELINE" class="col-lg-5"></div>
+                                <div id="PIPELINE" class="col-lg-2"><h3 class="val"> @Html.DisplayFor(m => m.NoofProducts) </h3></div>
+                                <div id="PIPELINE" class="col-lg-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div class="ClickDivZero">
+                        <div id="STAGE" class="well" title="NUMBER OF DEMOS SCHEDULED">
+                            <div class="row">
+                                <div id="STAGE" class="col-lg-1"></div>
+                                <div id="STAGE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">NUMBER OF SUPPLIERS </h4></div>
+                                <div id="STAGE" class="col-lg-3"><i class="fa fa-binoculars fa-2xx theme-blue-color"></i></div>
+                                <div id="STAGE" class="col-lg-1"></div>
+                            </div>
+                            <div class="row">
+                                <div id="SIGNUPS" class="col-lg-5"></div>
+                                <div id="SIGNUPS" class="col-lg-2"><h3 class="val"> @Model.NoofSuppliers </h3></div>
+                                <div id="SIGNUPS" class="col-lg-5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div id="PERCENTAGE" class="well" title="CLOSING VALUE">
+                        <div class="row">
+                            <div id="PERCENTAGE" class="col-lg-1"></div>
+                            <div id="PERCENTAGE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">MESSEGES RECEIVED </h4></div>
+                            <div id="PERCENTAGE" class="col-lg-3"><i class="fa fa-users fa-2xx theme-blue-color"></i></div>
+                            <div id="PERCENTAGE" class="col-lg-1"></div>
+                        </div>
+                        <div class="row">
+                            <div id="SIGNUPS" class="col-lg-5"></div>
+                            <div id="SIGNUPS" class="col-lg-2" style="align-items:center"><h3 class="val"> 10 </h3></div>
+                            <div id="SIGNUPS" class="col-lg-5"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="infobox" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                    <div id="PERCENTAGE" class="well" title="CLOSING VALUE">
+                        <div class="row">
+                            <div id="PERCENTAGE" class="col-lg-1"></div>
+                            <div id="PERCENTAGE" class="col-lg-7"><h4 class="footertext" style="font-weight: bold">ADMIN SUMMERY </h4></div>
+                            <div id="PERCENTAGE" class="col-lg-3"><i class="fa fa-star-o fa-2xx theme-blue-color"></i></div>
+                            <div id="PERCENTAGE" class="col-lg-1"></div>
+                        </div>
+                        <div class="row">
+                            <div id="SIGNUPS" class="col-lg-5"></div>
+                            <div id="SIGNUPS" class="col-lg-2" style="align-items:center"><h3 class="val"> ABC </h3></div>
+                            <div id="SIGNUPS" class="col-lg-5"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+  }

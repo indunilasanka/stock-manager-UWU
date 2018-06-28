@@ -1,0 +1,131 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.User
+
+@section scripts{
+
+    <script src="~/Scripts/Appscripts/Lead.js"></script>
+}
+<script src="~/Scripts/Appscripts/Lead.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+    selectmenu(2);
+    });
+</script>
+@{
+    ViewBag.Title = "AddEditLeads";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+
+<div class="col-md-12" style="padding-left: 45px !important;padding-right: 45px !important">
+    @section Headertitle {
+        @{
+            var title = "Review User";
+        }
+        @*<button type="button" data-toggle="modal" id="btnSuperAdminMail" class="edt  btn btn-blue pull-right margin-left-10"><span class="fa fa-envelope-o"></span> Mail </button>*@
+        <a style="margin-right:10px;" class="btnEditDeleteLead  btn btn-blue pull-right" href="@Url.Action("GoBackUser","Admin")"><span class="glyphicon glyphicon-arrow-left"></span> Back </a>
+
+        <h1>
+            @title
+        </h1>
+
+        <hr />
+    }
+
+    
+
+    <div class="col-md-12">
+        <div class="row">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5" style="margin:15px">
+            <div class="row">
+
+                <div class="panel panel-default" ">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Basic Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Full Name :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-9 col-xs-7 col-lg-8">
+                                @Html.DisplayFor(m => m.FullName)
+                                @Html.HiddenFor(m => m.UserId)
+                                @Html.HiddenFor(m => m.Division)
+                                @Html.HiddenFor(m => m.Designation)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Email :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.Email)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Division :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.DivisionName)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Designation :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.DesignationName)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div> 
+
+        <div class="col-md-6" style="margin:15px">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Other Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        @*<div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>@MultiLang.Type :</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @ViewBag.LeadTypeName
+                            </div>
+                        </div>*@
+
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+ 
+
+    <div class="modal-footer">
+        <a style="margin-right: 10px;" class="btn btn-default" href="@Url.Action("GoBackUser", "Admin")"> Close</a>
+    </div>
+
+</div>

@@ -1,0 +1,142 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.Product
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    selectmenu(3);
+    });
+</script>
+@{
+    ViewBag.Title = "AddEditLeads";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+
+<div class="col-md-12" style="padding-left: 45px !important;padding-right: 45px !important">
+    @section Headertitle {
+        @{
+            var title = "Review Product";
+        }
+        <a style="margin-right:10px;" class="btnEditDeleteLead  btn btn-blue pull-right" href="@Url.Action("GoBackProduct","Admin")"><span class="glyphicon glyphicon-arrow-left"></span> Back </a>
+
+        <h1>
+            @title
+        </h1>
+
+        <hr />
+    }
+
+
+
+    <div class="col-md-12">
+        <div class="row">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5" style="margin:15px">
+            <div class="row">
+
+                <div class="panel panel-default" ">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Basic Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Product Name :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.ProName)
+                                @Html.HiddenFor(m => m.PROId)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Product No :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.ProNo)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Main-Assest Name:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.MCName)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Main-Assest Symbol:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.MCSymbol)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Sub-Assest Name:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.SCName)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Sub-Assest Symbol:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.SCSymbol)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6" style="margin:15px">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Other Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        @*<div class="row">
+                                <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                    <label>@MultiLang.Type :</label>
+                                </div>
+                                <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                    @ViewBag.LeadTypeName
+                                </div>
+                            </div>*@
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="modal-footer">
+        <a style="margin-right: 10px;" class="btn btn-default" href="@Url.Action("GoBackProduct", "Admin")"> Close</a>
+    </div>
+
+</div>

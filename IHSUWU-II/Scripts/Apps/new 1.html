@@ -1,0 +1,1234 @@
+
+
+
+<!DOCTYPE html>
+<html class="html-shopping-cart-page">
+<head>
+    <title>Your store. Shopping Cart</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="generator" content="nopCommerce" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    
+    
+    
+    <link href="/Content/jquery-ui-themes/smoothness/jquery-ui-1.10.3.custom.min.css" rel="stylesheet" type="text/css" />
+<link href="/Themes/DefaultClean/Content/css/styles.css" rel="stylesheet" type="text/css" />
+
+    <script src="/Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-ui-1.10.3.custom.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script src="/Scripts/public.common.js" type="text/javascript"></script>
+<script src="/Scripts/public.ajaxcart.js" type="text/javascript"></script>
+
+    
+    
+    
+    
+    
+<link rel="shortcut icon" href="http://localhost:15536/favicon.ico" />
+    <!--Powered by nopCommerce - http://www.nopCommerce.com-->
+</head>
+<body>
+    
+
+
+
+<div class="ajax-loading-block-window" style="display: none">
+</div>
+<div id="dialog-notifications-success" title="Notification" style="display:none;">
+</div>
+<div id="dialog-notifications-error" title="Error" style="display:none;">
+</div>
+<div id="dialog-notifications-warning" title="Warning" style="display:none;">
+</div>
+<div id="bar-notification" class="bar-notification">
+    <span class="close" title="Close">&nbsp;</span>
+</div>
+
+
+
+
+<!--[if lte IE 7]>
+    <div style="clear:both;height:59px;text-align:center;position:relative;">
+        <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx" target="_blank">
+            <img src="/Themes/DefaultClean/Content/images/ie_warning.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+        </a>
+    </div>
+<![endif]-->
+
+
+<div class="master-wrapper-page">
+    
+    <div class="header">
+    
+    <div class="header-upper">
+        <div class="header-selectors-wrapper">
+            
+                <div class="currency-selector">
+<select id="customerCurrency" name="customerCurrency" onchange="setLocation(this.value);"><option selected="selected" value="/changecurrency/1?returnurl=%2fcart">US Dollar</option>
+<option value="/changecurrency/6?returnurl=%2fcart">Euro</option>
+</select>
+    </div>
+
+            
+            
+        </div>
+        <div class="header-links-wrapper">
+            <div class="header-links">
+    <ul>
+        
+            <li><a href="/register" class="ico-register">Register</a></li>
+            <li><a href="/login" class="ico-login">Log in</a></li>
+                            <li>
+                <a href="/wishlist" class="ico-wishlist">
+                    <span class="wishlist-label">Wishlist</span>
+                    <span class="wishlist-qty">(11)</span>
+                </a>
+            </li>
+                    <li id="topcartlink">
+                <a href="/cart" class="ico-cart">
+                    <span class="cart-label">Shopping cart</span>
+                    <span class="cart-qty">(22)</span>
+                </a>
+            </li>
+        
+    </ul>
+            <script type="text/javascript">
+            $(document).ready(function () {
+                $('.header').on('mouseenter', '#topcartlink', function () {
+                    $('#flyout-cart').addClass('active');
+                });
+                $('.header').on('mouseleave', '#topcartlink', function () {
+                    $('#flyout-cart').removeClass('active');
+                });
+                $('.header').on('mouseenter', '#flyout-cart', function () {
+                    $('#flyout-cart').addClass('active');
+                });
+                $('.header').on('mouseleave', '#flyout-cart', function () {
+                    $('#flyout-cart').removeClass('active');
+                });
+            });
+        </script>
+</div>
+
+            <div id="flyout-cart" class="flyout-cart">
+    <div class="mini-shopping-cart">
+        <div class="count">
+There are <a href="/cart">22 item(s)</a> in your cart.        </div>
+            <div class="items">
+                    <div class="item first">
+                            <div class="picture">
+                                <a href="/nikon-d5500-dslr-red" title="Show details for Nikon D5500 DSLR - Red">
+                                    <img alt="Picture of Nikon D5500 DSLR - Red" src="http://localhost:15536/content/images/thumbs/0000038_canon-digital-slr-camera-silver_70.jpeg" title="Show details for Nikon D5500 DSLR - Red" />
+                                </a>
+                            </div>
+                        <div class="product">
+                            <div class="name">
+                                <a href="/nikon-d5500-dslr-red">Nikon D5500 DSLR - Red</a>
+                            </div>
+                            <div class="price">Unit price: <span>$630.00</span></div>
+                            <div class="quantity">Quantity: <span>12</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                            <div class="picture">
+                                <a href="/nikon-d5500-dslr-black" title="Show details for Nikon D5500 DSLR - Black">
+                                    <img alt="Picture of Nikon D5500 DSLR - Black" src="http://localhost:15536/content/images/thumbs/0000037_canon-digital-slr-camera-black_70.jpeg" title="Show details for Nikon D5500 DSLR - Black" />
+                                </a>
+                            </div>
+                        <div class="product">
+                            <div class="name">
+                                <a href="/nikon-d5500-dslr-black">Nikon D5500 DSLR - Black</a>
+                            </div>
+                            <div class="price">Unit price: <span>$670.00</span></div>
+                            <div class="quantity">Quantity: <span>10</span></div>
+                        </div>
+                    </div>
+            </div>
+            <div class="totals">Sub-Total: <strong>$14,260.00</strong></div>
+            <div class="buttons">
+                    <input type="button" value="Go to cart" class="button-1 cart-button" onclick="setLocation('/cart')" />
+                            </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+    <div class="header-lower">
+        <div class="header-logo">
+            <a href="/">
+    <img title="" alt="Your store name" src="http://localhost:15536/Themes/DefaultClean/Content/images/logo.png">
+</a>
+        </div>
+        <div class="search-box store-search-box">
+            <form action="/search" id="small-search-box-form" method="get">    <input type="text" class="search-box-text" id="small-searchterms" autocomplete="off" name="q" placeholder="Search store" />
+    <input type="submit" class="button-1 search-box-button" value="Search" />
+        <script type="text/javascript">
+            $("#small-search-box-form").submit(function(event) {
+                if ($("#small-searchterms").val() == "") {
+                    alert('Please enter some search keyword');
+                    $("#small-searchterms").focus();
+                    event.preventDefault();
+                }
+            });
+        </script>
+        
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $('#small-searchterms').autocomplete({
+                            delay: 500,
+                            minLength: 3,
+                            source: '/catalog/searchtermautocomplete',
+                            appendTo: '.search-box',
+                            select: function(event, ui) {
+                                $("#small-searchterms").val(ui.item.label);
+                                setLocation(ui.item.producturl);
+                                return false;
+                            }
+                        })
+                        .data("ui-autocomplete")._renderItem = function(ul, item) {
+                            var t = item.label;
+                            //html encode
+                            t = htmlEncode(t);
+                            return $("<li></li>")
+                                .data("item.autocomplete", item)
+                                .append("<a><span>" + t + "</span></a>")
+                                .appendTo(ul);
+                        };
+                });
+            </script>
+        
+</form>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript">
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+    </script>
+    <div class="header-menu">
+        
+
+<ul class="top-menu">
+    
+    
+    <li>
+        <a href="/computers">Computers
+        </a>
+                <div class="sublist-toggle"></div>
+                <ul class="sublist first-level">
+    <li>
+        <a href="/desktops">Desktops
+        </a>
+
+    </li>
+    <li>
+        <a href="/notebooks">Notebooks
+        </a>
+
+    </li>
+    <li>
+        <a href="/software">Software
+        </a>
+
+    </li>
+                </ul>
+
+    </li>
+    <li>
+        <a href="/electronics">Electronics
+        </a>
+                <div class="sublist-toggle"></div>
+                <ul class="sublist first-level">
+    <li>
+        <a href="/camera-photo">Camera &amp; photo
+        </a>
+
+    </li>
+    <li>
+        <a href="/cell-phones">Cell phones
+        </a>
+
+    </li>
+    <li>
+        <a href="/others">Others
+        </a>
+
+    </li>
+                </ul>
+
+    </li>
+    <li>
+        <a href="/apparel">Apparel
+        </a>
+                <div class="sublist-toggle"></div>
+                <ul class="sublist first-level">
+    <li>
+        <a href="/shoes">Shoes
+        </a>
+
+    </li>
+    <li>
+        <a href="/clothing">Clothing
+        </a>
+
+    </li>
+    <li>
+        <a href="/accessories">Accessories
+        </a>
+
+    </li>
+                </ul>
+
+    </li>
+    <li>
+        <a href="/digital-downloads">Digital downloads
+        </a>
+
+    </li>
+    <li>
+        <a href="/books">Books
+        </a>
+
+    </li>
+    <li>
+        <a href="/jewelry">Jewelry
+        </a>
+
+    </li>
+    <li>
+        <a href="/gift-cards">Gift Cards
+        </a>
+
+    </li>
+                                
+</ul>
+
+    <div class="menu-toggle">Categories</div>
+    <ul class="top-menu mobile">
+        
+            <li>
+        <a href="/computers">Computers
+        </a>
+                <div class="sublist-toggle"></div>
+                <ul class="sublist first-level">
+    <li>
+        <a href="/desktops">Desktops
+        </a>
+
+    </li>
+    <li>
+        <a href="/notebooks">Notebooks
+        </a>
+
+    </li>
+    <li>
+        <a href="/software">Software
+        </a>
+
+    </li>
+                </ul>
+
+    </li>
+    <li>
+        <a href="/electronics">Electronics
+        </a>
+                <div class="sublist-toggle"></div>
+                <ul class="sublist first-level">
+    <li>
+        <a href="/camera-photo">Camera &amp; photo
+        </a>
+
+    </li>
+    <li>
+        <a href="/cell-phones">Cell phones
+        </a>
+
+    </li>
+    <li>
+        <a href="/others">Others
+        </a>
+
+    </li>
+                </ul>
+
+    </li>
+    <li>
+        <a href="/apparel">Apparel
+        </a>
+                <div class="sublist-toggle"></div>
+                <ul class="sublist first-level">
+    <li>
+        <a href="/shoes">Shoes
+        </a>
+
+    </li>
+    <li>
+        <a href="/clothing">Clothing
+        </a>
+
+    </li>
+    <li>
+        <a href="/accessories">Accessories
+        </a>
+
+    </li>
+                </ul>
+
+    </li>
+    <li>
+        <a href="/digital-downloads">Digital downloads
+        </a>
+
+    </li>
+    <li>
+        <a href="/books">Books
+        </a>
+
+    </li>
+    <li>
+        <a href="/jewelry">Jewelry
+        </a>
+
+    </li>
+    <li>
+        <a href="/gift-cards">Gift Cards
+        </a>
+
+    </li>
+                                                                
+    </ul>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.menu-toggle').click(function () {
+                $(this).siblings('.top-menu.mobile').slideToggle('slow');
+            });
+            $('.top-menu.mobile .sublist-toggle').click(function () {
+                $(this).siblings('.sublist').slideToggle('slow');
+            });
+        });
+    </script>
+
+
+
+
+
+    </div>
+    <div class="master-wrapper-content">
+        
+
+        <div class="master-column-wrapper">
+            
+<div class="center-1">
+    
+    
+<div class="page shopping-cart-page">
+    <div class="page-title">
+        <h1>Shopping cart</h1>
+    </div>
+    <div class="page-body">
+        
+<div class="order-summary-content">
+   
+   
+<form action="/cart" enctype="multipart/form-data" id="shopping-cart-form" method="post"><input name="__RequestVerificationToken" type="hidden" value="iGqkQMJBdExXLkKvojNxcA7uW15HmX3PBcj47Kt8QSOOa-OM3d2_we-mLNMe0OnPy9OGOvW-SiFR21ZJGrdskgO5s3QJCf1aqOrwjDgHuDA1" />       <div class="table-wrapper">
+           <table class="cart">
+               <colgroup>
+                       <col width="1" />
+                                          <col width="1" />
+                                          <col width="1" />
+                   <col />
+                   <col width="1" />
+                   <col width="1" />
+                   <col width="1" />
+               </colgroup>
+               <thead>
+                   <tr>
+                           <th class="remove-from-cart">
+                               Remove
+                           </th>
+                                                  <th class="sku">
+                               SKU
+                           </th>
+                                                  <th class="product-picture">
+                               Image
+                           </th>
+                       <th class="product">
+                           Product(s)
+                       </th>
+                       <th class="unit-price">
+                           Price
+                       </th>
+                       <th class="quantity">
+                           Qty.
+                       </th>
+                       <th class="subtotal">
+                           Total
+                       </th>
+                   </tr>
+               </thead>
+               <tbody>
+                       <tr>
+                               <td class="remove-from-cart">
+                                       <label class="td-title">Remove:</label>
+                                       <input type="checkbox" name="removefromcart" value="10" />
+                               </td>
+                                                          <td class="sku">
+                                   <label class="td-title">SKU:</label>
+                                    <span class="sku-number">N5500DS_B</span>
+                               </td>
+                                                          <td class="product-picture">
+                                   <a href="/nikon-d5500-dslr-black"><img alt="Picture of Nikon D5500 DSLR - Black" src="http://localhost:15536/content/images/thumbs/0000037_canon-digital-slr-camera-black_80.jpeg" title="Show details for Nikon D5500 DSLR - Black" /></a>
+                               </td>
+                           <td class="product">
+                               <a href="/nikon-d5500-dslr-black" class="product-name">Nikon D5500 DSLR - Black</a>
+                                                                                                                                                       </td>
+                           <td class="unit-price">
+                               <label class="td-title">Price:</label>
+                               <span class="product-unit-price">$670.00</span>
+                           </td>
+                           <td class="quantity">
+                               <label class="td-title">Qty.:</label>
+                                       <input name="itemquantity10" type="text" value="10" class="qty-input" />
+                           </td>
+                           <td class="subtotal">
+                               <label class="td-title">Total:</label>
+                               <span class="product-subtotal">$6,700.00</span>
+                           </td>
+                       </tr>
+                       <tr>
+                               <td class="remove-from-cart">
+                                       <label class="td-title">Remove:</label>
+                                       <input type="checkbox" name="removefromcart" value="11" />
+                               </td>
+                                                          <td class="sku">
+                                   <label class="td-title">SKU:</label>
+                                    <span class="sku-number">N5500DS_R</span>
+                               </td>
+                                                          <td class="product-picture">
+                                   <a href="/nikon-d5500-dslr-red"><img alt="Picture of Nikon D5500 DSLR - Red" src="http://localhost:15536/content/images/thumbs/0000038_canon-digital-slr-camera-silver_80.jpeg" title="Show details for Nikon D5500 DSLR - Red" /></a>
+                               </td>
+                           <td class="product">
+                               <a href="/nikon-d5500-dslr-red" class="product-name">Nikon D5500 DSLR - Red</a>
+                                                                                                                                                       </td>
+                           <td class="unit-price">
+                               <label class="td-title">Price:</label>
+                               <span class="product-unit-price">$630.00</span>
+                           </td>
+                           <td class="quantity">
+                               <label class="td-title">Qty.:</label>
+                                       <input name="itemquantity11" type="text" value="12" class="qty-input" />
+                           </td>
+                           <td class="subtotal">
+                               <label class="td-title">Total:</label>
+                               <span class="product-subtotal">$7,560.00</span>
+                           </td>
+                       </tr>
+               </tbody>
+           </table>
+       </div>
+       <div class="cart-options">
+               <div class="common-buttons">
+                   <input type="submit" name="updatecart" value="Update shopping cart" class="button-2 update-cart-button" />
+                   <input type="submit" name="continueshopping" value="Continue shopping" class="button-2 continue-shopping-button" />
+               </div>
+               <div class="checkout-attributes">
+        <dl>
+                <dt id="checkout_attribute_label_1">
+                    <label class="text-prompt">
+                        Gift wrapping
+                    </label>
+                        <span class="required">*</span>
+                </dt>
+                <dd id="checkout_attribute_input_1">
+                        <select name="checkout_attribute_1" id="checkout_attribute_1">
+                                                            <option selected="selected" value="1">No</option>
+                                <option value="2">Yes [+$10.00]</option>
+                        </select>
+                </dd>
+        </dl>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            checkoutAttributeChange();
+            $('#checkout_attribute_1').change(function(){checkoutAttributeChange();});
+
+        });
+
+        function checkoutAttributeChange() {
+            $.ajax({
+                cache: false,
+                url: '/shoppingcart/checkoutattributechange',
+                data: $('#shopping-cart-form').serialize(),
+                type: 'post',
+                success: function(data) {
+                    if (data.enabledattributeids) {
+                        for (var i = 0; i < data.enabledattributeids.length; i++) {
+                            $('#checkout_attribute_label_' + data.enabledattributeids[i]).show();
+                            $('#checkout_attribute_input_' + data.enabledattributeids[i]).show();
+                        }
+                    }
+                    if (data.disabledattributeids) {
+                        for (var i = 0; i < data.disabledattributeids.length; i++) {
+                            $('#checkout_attribute_label_' + data.disabledattributeids[i]).hide();
+                            $('#checkout_attribute_input_' + data.disabledattributeids[i]).hide();
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+                  </div>
+       <div class="cart-footer">
+           
+               <div class="cart-collaterals">
+                   <div class="deals">
+                           <div class="coupon-box">
+        <div class="title">
+            <strong>Discount Code</strong>
+        </div>
+        <div class="hint">
+            Enter your coupon here
+        </div>
+        <div class="coupon-code">
+            <input name="discountcouponcode" id="discountcouponcode" type="text" class="discount-coupon-code" />
+            <input type="submit" name="applydiscountcouponcode" id="applydiscountcouponcode" 
+                   value="Apply coupon" class="button-2 apply-discount-coupon-code-button" />
+        </div>
+            </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#discountcouponcode').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#applydiscountcouponcode').click();
+                    return false;
+                }
+            });
+        });
+    </script>
+
+                           <div class="giftcard-box">
+        <div class="title">
+            <strong>Gift Cards</strong>
+        </div>
+        <div class="hint">Enter gift card code</div>
+        <div class="coupon-code">
+            <input name="giftcardcouponcode" id="giftcardcouponcode" type="text" class="gift-card-coupon-code" />
+            <input type="submit" name="applygiftcardcouponcode" id="applygiftcardcouponcode" 
+                   value="Add gift card" class="button-2 apply-gift-card-coupon-code-button" />
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#giftcardcouponcode').keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $('#applygiftcardcouponcode').click();
+                    return false;
+                }
+            });
+        });
+    </script>
+
+                       
+                   </div>
+                       <div class="shipping">
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#CountryId").change(function() {
+                    var selectedItem = $(this).val();
+                    var ddlStates = $("#StateProvinceId");
+                    var estimateProgress = $("#estimate-shipping-loading-progress");
+                    estimateProgress.show();
+                    $.ajax({
+                        cache: false,
+                        type: "GET",
+                        url: "/country/getstatesbycountryid",
+                        data: { "countryId": selectedItem, "addSelectStateItem": "false" },
+                        success: function(data) {
+                            ddlStates.html('');
+                            $.each(data, function(id, option) {
+                                ddlStates.append($('<option></option>').val(option.id).html(option.name));
+                            });
+                            estimateProgress.hide();
+                        },
+                        error: function(xhr, ajaxOptions, thrownError) {
+                            alert('Failed to retrieve states.');
+                            estimateProgress.hide();
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <div class="estimate-shipping">
+            <div class="title">
+                <strong>Estimate shipping</strong>
+            </div>
+            <div class="hint">Enter your destination to get a shipping estimate</div>
+            <div class="shipping-options">
+                <div class="inputs">
+                    <label for="CountryId">Country:</label>
+                    <select class="country-input" data-val="true" data-val-number="The field Country must be a number." id="CountryId" name="CountryId"><option value="0">Select country</option>
+<option value="1">United States</option>
+<option value="88">Afghanistan</option>
+<option value="89">Albania</option>
+<option value="90">Algeria</option>
+<option value="91">American Samoa</option>
+<option value="92">Andorra</option>
+<option value="93">Angola</option>
+<option value="94">Anguilla</option>
+<option value="95">Antarctica</option>
+<option value="96">Antigua and Barbuda</option>
+<option value="3">Argentina</option>
+<option value="4">Armenia</option>
+<option value="5">Aruba</option>
+<option value="6">Australia</option>
+<option value="7">Austria</option>
+<option value="8">Azerbaijan</option>
+<option value="9">Bahamas</option>
+<option value="97">Bahrain</option>
+<option value="10">Bangladesh</option>
+<option value="98">Barbados</option>
+<option value="11">Belarus</option>
+<option value="12">Belgium</option>
+<option value="13">Belize</option>
+<option value="99">Benin</option>
+<option value="14">Bermuda</option>
+<option value="100">Bhutan</option>
+<option value="15">Bolivia</option>
+<option value="16">Bosnia and Herzegowina</option>
+<option value="101">Botswana</option>
+<option value="102">Bouvet Island</option>
+<option value="17">Brazil</option>
+<option value="103">British Indian Ocean Territory</option>
+<option value="104">Brunei Darussalam</option>
+<option value="18">Bulgaria</option>
+<option value="105">Burkina Faso</option>
+<option value="106">Burundi</option>
+<option value="107">Cambodia</option>
+<option value="108">Cameroon</option>
+<option value="2">Canada</option>
+<option value="109">Cape Verde</option>
+<option value="19">Cayman Islands</option>
+<option value="110">Central African Republic</option>
+<option value="111">Chad</option>
+<option value="20">Chile</option>
+<option value="21">China</option>
+<option value="112">Christmas Island</option>
+<option value="113">Cocos (Keeling) Islands</option>
+<option value="22">Colombia</option>
+<option value="114">Comoros</option>
+<option value="115">Congo</option>
+<option value="116">Congo (Democratic Republic of the)</option>
+<option value="117">Cook Islands</option>
+<option value="23">Costa Rica</option>
+<option value="118">Cote D&#39;Ivoire</option>
+<option value="24">Croatia</option>
+<option value="25">Cuba</option>
+<option value="26">Cyprus</option>
+<option value="27">Czech Republic</option>
+<option value="28">Denmark</option>
+<option value="119">Djibouti</option>
+<option value="120">Dominica</option>
+<option value="29">Dominican Republic</option>
+<option value="30">East Timor</option>
+<option value="31">Ecuador</option>
+<option value="32">Egypt</option>
+<option value="121">El Salvador</option>
+<option value="122">Equatorial Guinea</option>
+<option value="123">Eritrea</option>
+<option value="124">Estonia</option>
+<option value="125">Ethiopia</option>
+<option value="126">Falkland Islands (Malvinas)</option>
+<option value="127">Faroe Islands</option>
+<option value="128">Fiji</option>
+<option value="33">Finland</option>
+<option value="34">France</option>
+<option value="129">French Guiana</option>
+<option value="130">French Polynesia</option>
+<option value="131">French Southern Territories</option>
+<option value="132">Gabon</option>
+<option value="133">Gambia</option>
+<option value="35">Georgia</option>
+<option value="36">Germany</option>
+<option value="134">Ghana</option>
+<option value="37">Gibraltar</option>
+<option value="38">Greece</option>
+<option value="135">Greenland</option>
+<option value="136">Grenada</option>
+<option value="137">Guadeloupe</option>
+<option value="138">Guam</option>
+<option value="39">Guatemala</option>
+<option value="139">Guinea</option>
+<option value="140">Guinea-bissau</option>
+<option value="141">Guyana</option>
+<option value="142">Haiti</option>
+<option value="143">Heard and Mc Donald Islands</option>
+<option value="144">Honduras</option>
+<option value="40">Hong Kong</option>
+<option value="41">Hungary</option>
+<option value="145">Iceland</option>
+<option value="42">India</option>
+<option value="43">Indonesia</option>
+<option value="146">Iran (Islamic Republic of)</option>
+<option value="147">Iraq</option>
+<option value="44">Ireland</option>
+<option value="45">Israel</option>
+<option value="46">Italy</option>
+<option value="47">Jamaica</option>
+<option value="48">Japan</option>
+<option value="49">Jordan</option>
+<option value="50">Kazakhstan</option>
+<option value="148">Kenya</option>
+<option value="149">Kiribati</option>
+<option value="150">Korea</option>
+<option value="51">Korea, Democratic People&#39;s Republic of</option>
+<option value="52">Kuwait</option>
+<option value="151">Kyrgyzstan</option>
+<option value="152">Lao People&#39;s Democratic Republic</option>
+<option value="153">Latvia</option>
+<option value="154">Lebanon</option>
+<option value="155">Lesotho</option>
+<option value="156">Liberia</option>
+<option value="157">Libyan Arab Jamahiriya</option>
+<option value="158">Liechtenstein</option>
+<option value="159">Lithuania</option>
+<option value="160">Luxembourg</option>
+<option value="161">Macau</option>
+<option value="162">Macedonia</option>
+<option value="163">Madagascar</option>
+<option value="164">Malawi</option>
+<option value="53">Malaysia</option>
+<option value="165">Maldives</option>
+<option value="166">Mali</option>
+<option value="167">Malta</option>
+<option value="168">Marshall Islands</option>
+<option value="169">Martinique</option>
+<option value="170">Mauritania</option>
+<option value="171">Mauritius</option>
+<option value="172">Mayotte</option>
+<option value="54">Mexico</option>
+<option value="173">Micronesia</option>
+<option value="174">Moldova</option>
+<option value="175">Monaco</option>
+<option value="176">Mongolia</option>
+<option value="177">Montenegro</option>
+<option value="178">Montserrat</option>
+<option value="179">Morocco</option>
+<option value="180">Mozambique</option>
+<option value="181">Myanmar</option>
+<option value="182">Namibia</option>
+<option value="183">Nauru</option>
+<option value="184">Nepal</option>
+<option value="55">Netherlands</option>
+<option value="185">Netherlands Antilles</option>
+<option value="186">New Caledonia</option>
+<option value="56">New Zealand</option>
+<option value="187">Nicaragua</option>
+<option value="188">Niger</option>
+<option value="189">Nigeria</option>
+<option value="190">Niue</option>
+<option value="191">Norfolk Island</option>
+<option value="192">Northern Mariana Islands</option>
+<option value="57">Norway</option>
+<option value="193">Oman</option>
+<option value="58">Pakistan</option>
+<option value="194">Palau</option>
+<option value="59">Palestine</option>
+<option value="195">Panama</option>
+<option value="196">Papua New Guinea</option>
+<option value="60">Paraguay</option>
+<option value="61">Peru</option>
+<option value="62">Philippines</option>
+<option value="197">Pitcairn</option>
+<option value="63">Poland</option>
+<option value="64">Portugal</option>
+<option value="65">Puerto Rico</option>
+<option value="66">Qatar</option>
+<option value="198">Reunion</option>
+<option value="67">Romania</option>
+<option value="68">Russian Federation</option>
+<option value="199">Rwanda</option>
+<option value="200">Saint Kitts and Nevis</option>
+<option value="201">Saint Lucia</option>
+<option value="202">Saint Vincent and the Grenadines</option>
+<option value="203">Samoa</option>
+<option value="204">San Marino</option>
+<option value="205">Sao Tome and Principe</option>
+<option value="69">Saudi Arabia</option>
+<option value="206">Senegal</option>
+<option value="87">Serbia</option>
+<option value="207">Seychelles</option>
+<option value="208">Sierra Leone</option>
+<option value="70">Singapore</option>
+<option value="71">Slovakia (Slovak Republic)</option>
+<option value="72">Slovenia</option>
+<option value="209">Solomon Islands</option>
+<option value="210">Somalia</option>
+<option value="73">South Africa</option>
+<option value="211">South Georgia &amp; South Sandwich Islands</option>
+<option value="212">South Sudan</option>
+<option value="74">Spain</option>
+<option value="213">Sri Lanka</option>
+<option value="214">St. Helena</option>
+<option value="215">St. Pierre and Miquelon</option>
+<option value="216">Sudan</option>
+<option value="217">Suriname</option>
+<option value="218">Svalbard and Jan Mayen Islands</option>
+<option value="219">Swaziland</option>
+<option value="75">Sweden</option>
+<option value="76">Switzerland</option>
+<option value="220">Syrian Arab Republic</option>
+<option value="77">Taiwan</option>
+<option value="221">Tajikistan</option>
+<option value="222">Tanzania</option>
+<option value="78">Thailand</option>
+<option value="223">Togo</option>
+<option value="224">Tokelau</option>
+<option value="225">Tonga</option>
+<option value="226">Trinidad and Tobago</option>
+<option value="227">Tunisia</option>
+<option value="79">Turkey</option>
+<option value="228">Turkmenistan</option>
+<option value="229">Turks and Caicos Islands</option>
+<option value="230">Tuvalu</option>
+<option value="231">Uganda</option>
+<option value="80">Ukraine</option>
+<option value="81">United Arab Emirates</option>
+<option value="82">United Kingdom</option>
+<option value="83">United States minor outlying islands</option>
+<option value="84">Uruguay</option>
+<option value="85">Uzbekistan</option>
+<option value="232">Vanuatu</option>
+<option value="233">Vatican City State (Holy See)</option>
+<option value="86">Venezuela</option>
+<option value="234">Viet Nam</option>
+<option value="235">Virgin Islands (British)</option>
+<option value="236">Virgin Islands (U.S.)</option>
+<option value="237">Wallis and Futuna Islands</option>
+<option value="238">Western Sahara</option>
+<option value="239">Yemen</option>
+<option value="240">Zambia</option>
+<option value="241">Zimbabwe</option>
+</select>
+                    <span class="required">*</span>
+                </div>
+                <div class="inputs">
+                    <label for="StateProvinceId">State / province:</label>
+                    <select class="state-input" data-val="true" data-val-number="The field State / province must be a number." id="StateProvinceId" name="StateProvinceId"><option value="0">Other (Non US)</option>
+</select>
+                    <span id="estimate-shipping-loading-progress" style="display: none;" class="please-wait">Wait...</span>
+                </div>
+                <div class="inputs">
+                    <label for="ZipPostalCode">Zip / postal code:</label>
+                    <input class="zip-input" id="ZipPostalCode" name="ZipPostalCode" type="text" value="" />
+                </div>
+                <div class="buttons">
+                    <input id="estimate-shipping-button" type="button" value="Estimate shipping" class="button-2 estimate-shipping-button" />
+                </div>
+            </div>
+            <div class="estimate-shipping-result"></div>
+        </div>
+    </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#estimate-shipping-button').click(function() {
+            displayAjaxLoading(true);
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/cart/estimateshipping",
+                data: $("#shopping-cart-form").serialize(),
+                success: function(data) {
+                    displayAjaxLoading();
+                    $('.estimate-shipping-result').html(data);
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    displayAjaxLoading();
+                    alert('Failed to retrieve estimate shipping.');
+                }
+            });
+        });
+
+        $("#ZipPostalCode").keydown(function (event) {
+            if (event.keyCode == 13) {
+                $("#estimate-shipping-button").click();
+                return false;
+            }
+        });
+    });
+</script>
+               </div>
+           <div class="totals">
+               <div class="total-info">
+    <table class="cart-total">
+        <tbody>
+            <tr class="order-subtotal">
+                <td class="cart-total-left">
+                    <label>Sub-Total:</label>
+                </td>
+                <td class="cart-total-right">
+                    <span class="value-summary">$14,260.00</span>
+                </td>
+            </tr>
+                            <tr class="shipping-cost">
+                    <td class="cart-total-left">
+                        <label>Shipping:</label>
+                    </td>
+                    <td class="cart-total-right">
+                            <span class="value-summary">$0.00</span>
+                    </td>
+                </tr>
+                                                    <tr class="tax-value">
+                    <td class="cart-total-left">
+                        <label>Tax:</label>
+                    </td>
+                    <td class="cart-total-right">
+                        <span class="value-summary">$0.00</span>
+                    </td>
+                </tr>
+                                                <tr class="order-total">
+                <td class="cart-total-left">
+                    <label>Total:</label>
+                </td>
+                <td class="cart-total-right">
+                        <span class="value-summary"><strong>$14,260.00</strong></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+                                      <div id="terms-of-service-warning-box" title="Terms of service" style="display: none;">
+                           <p>Please accept the terms of service before the next step.</p>
+                       </div>
+                       <div class="terms-of-service">
+                           <input id="termsofservice" type="checkbox" name="termsofservice"/>
+                           <label for="termsofservice">I agree with the terms of service and I adhere to them unconditionally</label>
+                           <a class="read" id="read-terms">(read)</a>
+                           <script>
+                               $(document).ready(function() {
+                                   $('#read-terms').on('click', function(e) {
+                                       e.preventDefault();
+                                       displayPopupContentFromUrl('/t-popup/conditionsofuse', 'Terms of service');
+                                   });
+                               });
+                           </script>
+                       </div>
+                   <div class="checkout-buttons">
+                           <script type="text/javascript">
+                               $(document).ready(function () {
+                                   $('#checkout').click(function () {
+                                       //terms of service
+                                       var termOfServiceOk = true;
+                                       if ($('#termsofservice').length > 0) {
+                                           //terms of service element exists
+                                           if (!$('#termsofservice').is(':checked')) {
+                                               $("#terms-of-service-warning-box").dialog();
+                                               termOfServiceOk = false;
+                                           } else {
+                                               termOfServiceOk = true;
+                                           }
+                                       }
+                                       return termOfServiceOk;
+                                   });
+                               });
+                           </script>
+                           <button type="submit" id="checkout" name="checkout" value="checkout" class="button-1 checkout-button">
+                               Checkout
+                           </button>
+                   </div>
+                   <div class="addon-buttons">
+                       
+                       
+                   </div>
+           </div>
+       </div>
+</form>   
+</div>
+    </div>
+</div>
+
+    
+</div>
+
+        </div>
+        
+    </div>
+    <div class="footer">
+    <div class="footer-upper">
+        <div class="footer-block information">
+            <div class="title">
+                <strong>Information</strong>
+            </div>
+            <ul class="list">
+                    <li><a href="/sitemap">Sitemap</a></li>
+                                    <li><a href="/shipping-returns">Shipping &amp; returns</a></li>
+                    <li><a href="/privacy-notice">Privacy notice</a></li>
+                    <li><a href="/conditions-of-use">Conditions of Use</a></li>
+                    <li><a href="/about-us">About us</a></li>
+                <li><a href="/contactus">Contact us</a></li>
+            </ul>
+        </div>
+        <div class="footer-block customer-service">
+            <div class="title">
+                <strong>Customer service</strong>
+            </div>
+            <ul class="list">
+                <li><a href="/search">Search</a> </li>
+                    <li><a href="/news">News</a></li>
+                                    <li><a href="/blog">Blog</a></li>
+                                                    <li><a href="/recentlyviewedproducts">Recently viewed products</a></li>
+                                    <li><a href="/compareproducts">Compare products list</a></li>
+                                    <li><a href="/newproducts">New products</a></li>
+                            </ul>
+        </div>
+        <div class="footer-block my-account">
+            <div class="title">
+                <strong>My account</strong>
+            </div>
+            <ul class="list">
+                <li><a href="/customer/info">My account</a></li>
+                <li><a href="/order/history">Orders</a></li>
+                <li><a href="/customer/addresses">Addresses</a></li>
+                    <li><a href="/cart">Shopping cart</a></li>
+                                    <li><a href="/wishlist">Wishlist</a></li>
+                                    <li><a href="/vendor/apply">Apply for vendor account</a></li>
+                            </ul>
+        </div>
+        <div class="footer-block follow-us">
+            <div class="social">
+                <div class="title">
+                    <strong>Follow us</strong>
+                </div>
+                <ul class="networks">
+		<li class="facebook"><a href="http://www.facebook.com/nopCommerce" target="_blank">Facebook</a></li>
+			<li class="twitter"><a href="https://twitter.com/nopCommerce" target="_blank">Twitter</a></li>
+			<li class="rss"><a href="/news/rss/1">RSS</a></li>
+			<li class="youtube"><a href="http://www.youtube.com/user/nopCommerce" target="_blank">YouTube</a></li>
+			<li class="google-plus"><a href="https://plus.google.com/+nopcommerce" target="_blank">Google+</a></li>
+</ul>
+            </div>
+            <div class="newsletter">
+    <div class="title">
+        <strong>Newsletter</strong>
+    </div>
+    <div class="newsletter-subscribe" id="newsletter-subscribe-block">
+        <div class="newsletter-email">
+            <input class="newsletter-subscribe-text" id="newsletter-email" name="NewsletterEmail" placeholder="Enter your email here..." type="text" value="" />
+            <input type="button" value="Subscribe" id="newsletter-subscribe-button" class="button-1 newsletter-subscribe-button" />
+        </div>
+        <div class="newsletter-validation">
+            <span id="subscribe-loading-progress" style="display: none;" class="please-wait">Wait...</span>
+            <span class="field-validation-valid" data-valmsg-for="NewsletterEmail" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+    <div class="newsletter-result" id="newsletter-result-block"></div>
+    <script type="text/javascript">
+        function newsletter_subscribe(subscribe) {
+            var subscribeProgress = $("#subscribe-loading-progress");
+            subscribeProgress.show();
+            var postData = {
+                subscribe: subscribe,
+                email: $("#newsletter-email").val()
+            };
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "/subscribenewsletter",
+                data: postData,
+                success: function(data) {
+                    subscribeProgress.hide();
+                    $("#newsletter-result-block").html(data.Result);
+                    if (data.Success) {
+                        $('#newsletter-subscribe-block').hide();
+                        $('#newsletter-result-block').show();
+                    } else {
+                        $('#newsletter-result-block').fadeIn("slow").delay(2000).fadeOut("slow");
+                    }
+                },
+                error: function(xhr, ajaxOptions, thrownError) {
+                    alert('Failed to subscribe.');
+                    subscribeProgress.hide();
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            $('#newsletter-subscribe-button').click(function () {
+                    newsletter_subscribe('true');
+            });
+            $("#newsletter-email").keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $("#newsletter-subscribe-button").click();
+                    return false;
+                }
+            });
+        });
+    </script>
+</div>
+
+        </div>
+    </div>
+    <div class="footer-lower">
+        <div class="footer-info">
+            <span class="footer-disclaimer">Copyright &copy; 2017 Your store name. All rights reserved.</span>
+        </div>
+            <div class="footer-powered-by">
+                
+                Powered by <a href="http://www.nopcommerce.com/">nopCommerce</a>
+            </div>
+        
+    </div>
+    
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.footer-block .title').click(function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 769) {
+                $(this).siblings('.list').slideToggle('slow');
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.block .title').click(function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 1001) {
+                $(this).siblings('.listbox').slideToggle('slow');
+            }
+        });
+    });
+</script>
+</div>
+
+
+    
+    
+
+<!-- Visual Studio Browser Link -->
+<script type="application/json" id="__browserLink_initializationData">
+    {"appName":"Chrome","requestId":"ddaa5a21ef694e1688b8c6a6ad01cea7"}
+</script>
+<script type="text/javascript" src="http://localhost:15606/812770ed0a0d47fd9b4b40f218219c95/browserLink" async="async"></script>
+<!-- End Browser Link -->
+
+</body>
+</html>

@@ -1,0 +1,174 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.GRN
+
+@{
+    ViewBag.Title = "HtmlInvoice";
+    Layout = null;
+    
+}
+<style>
+    .table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+    @@media print { 
+   .headingblack { 
+        background-color: #000000 !important;
+       -webkit-print-color-adjust: exact; 
+  
+ 
+    }
+   
+   .headingash{
+       background-color: #F3F0F0 !important;
+         -webkit-print-color-adjust: exact; 
+         page-break-inside: avoid;
+         column-span : all;
+         page-break-after: avoid;
+   }
+   .page {
+       width: 90%;
+        page-break-after: always;
+        
+    }
+
+        
+}
+
+
+
+</style>
+
+<table style="width:90%;border:solid 2px;" align="center" class="page" >
+    <tr id="address">
+        <td style="padding-left:2% ;">
+
+            @*<img src="~/Content/Images/navotar-logo.png"; height="75%" />*@
+            @*@if (@ViewBag.ImagePath != null)
+                {
+                    <img src="@ViewBag.ImagePath" style="max-height:100px; max-width:400px;" />
+
+                    //<img src="@Url.Action("GetImage", "Base", new { path=@ViewBag.ImagePath })" class="img-responsive"  style="max-width:400px; max-height:100px;"/>
+                }*@
+
+        </td>
+        <td>
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%">
+                <tr><td>Uva Wellassa University</td></tr>
+                <tr><td>Sri Lanka</td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr style="background-color:#000000;" class="headingblack">
+        <td colspan="2">
+            <table id="subjectLine" align="center">
+                <tr>
+                    <td style="color:white;height:50%;font-size: 20px;">
+                        GOOD RECEIVED NOTE
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr >
+        <td >
+            <table style="width:100%; text-align:left;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>Good Received Note Number : @Model.GRNNo</td></tr>
+            </table>
+        </td>
+        <td >
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>@DateTime.Now</td></tr>
+            </table>
+        </td>
+    </tr>
+        
+    <tr>
+        <td colspan="2">
+            <table  style="width:100%; text-align:left;font-size:large;line-height: 95%;border-bottom:1px solid black;">
+                <tr><td></td></tr>
+                <tr><td>Supplier Name : @Model.SName &emsp; @Model.SAddress &emsp; @Model.SMobile</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+  
+    @if (Model.GRNIList.Count > 0)
+    {
+        int i = 0;
+        <tr id="section3">
+
+            <td colspan="2" style="font-size:25px">
+                <table class="table table-bordered" width="100%" style="border:1px solid black;font-size:25px">
+                    <thead>
+                        <tr class="head" style="background-color: #F3F0F0  !important;color: black !important;padding: 5px 10px;border:1px solid black">
+                            <th style="text-align:justify">Date</th>
+                            <th style="text-align:justify">Order No</th>
+                            <th style="text-align: justify;">Bill/Invoice No</th>
+                            <th style="text-align: justify;">Description</th>
+                            <th style="text-align: justify;">Quantity</th>
+                            <th style="text-align: justify;">Unit Price(Rs)</th>
+                            <th style="text-align: justify;">Value(Rs)</th>
+                            <th style="text-align: right;">SBF</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var invoiceItem in Model.GRNIList)
+                        {
+                            i = i + 1;
+                            <tr style="border:1px solid black">
+                                <td style="text-align:justify">@DateTime.Now.Day/@DateTime.Now.Month/@DateTime.Now.Year</td>
+                                <td style="text-align:justify">@invoiceItem.PONo</td>
+                                <td style="text-align:justify"></td>
+                                <td style="text-align:justify">@invoiceItem.GIDescription</td>
+                                <td style="text-align:justify">@invoiceItem.GIReceivedQuantity</td>
+                                <td style="text-align: justify;">@string.Format("{0:0.00}", invoiceItem.GIUnitPrice)</td>
+                                <td style="text-align: justify;">@string.Format("{0:0.00}", invoiceItem.GITotal)</td>
+                                <td style="text-align:right"></td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <td colspan="2">
+            <table  style="width:100%; text-align:left;font-size:x-large;line-height: 95%;">
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td>Prepared By: <label style="padding-left:25%">Checked By:</label><label style="padding-left:20%">Entered in Stock Book By:</label></td></tr>
+                <tr><td>Name:<label style="padding-left:31%">Name:</label><label style="padding-left:25%">Name:</label></td></tr>
+                <tr><td>Signature:<label style="padding-left:28%">Signature:</label><label style="padding-left:22%">Signature:</label></td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:larger;line-height: 95%;border-top:1px solid black;">
+                <tr><td></td></tr>
+                <tr><td>I certify that above goods have been received correctly and recorded in relevant books</td></tr>
+                <tr><td></td></tr>
+                <tr><td><b>Store Keeper</b></td></tr>
+                <tr><td>Name:</td></tr>
+                <tr><td>Signature:</td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+
+</table>

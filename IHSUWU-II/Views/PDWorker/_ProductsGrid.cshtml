@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Login.Models.POItemList>
+
+@{
+    var grid = new WebGrid(Model, rowsPerPage: 10);
+}
+@if (@Model != null && @Model.Any())
+{
+    @grid.Table(tableStyle: "table table-bordered table-striped table-hover tbnew",
+                headerStyle: "head blue",
+                columns: new[]
+                {
+                     grid.Column("ProName", header: "Product Name"),
+                     grid.Column("PIDescription", header: "Description" ),
+                     grid.Column("PIUnitPrice", header: "Rate",format: (item) => item.PIUnitPrice!=null ? item.PIUnitPrice.ToString("") : "", style:"right"),
+                     grid.Column("PIQuantity", header: "Quantity" ),
+                     grid.Column("PITotal", header: "Total" ),
+                     grid.Column("", header:"",
+                      format: (item) => new HtmlString(string.Format("<a href=\"#\" data-id=\"{0}\" data-id1=\"{1}\" data-id2=\"{2}\" data-option=\"1\" ><span class=\"glyphicon glyphicon-pencil\"></span></a><a href=\"#\" data-id=\"{0}\" data-id1=\"{1}\" data-id2=\"{2}\" data-option=\"2\" ><span class=\"glyphicon glyphicon-trash\"></span></a>",
+                        @item.PIId,@item.PIId,@item.IsApproved)
+                          ),canSort:true, style: "WebGridActionWidth")
+
+
+
+
+                }
+
+  )
+    ;
+    if (Model.Count() > 0)
+    {
+
+        @grid.PagerList(mode: WebGridPagerModes.All,
+                    numericLinksCount: 15,
+                    firstText: "««",
+                    previousText: "«",
+                    nextText: "»",
+                    lastText: "»»")
+        ;
+    }
+
+}
+else
+{
+    <span>No Records Found</span>
+
+}

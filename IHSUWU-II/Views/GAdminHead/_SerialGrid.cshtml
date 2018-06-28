@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Login.Models.Serial>
+
+@{
+    var grid = new WebGrid(Model, rowsPerPage: 10);
+}
+@if (@Model != null && @Model.Any())
+{
+    @grid.Table(tableStyle: "table table-bordered table-striped table-hover tbnew",
+                headerStyle: "head blue",
+                columns: new[]
+                {
+                     grid.Column("Serial_no", header: "Serial No"),
+                     grid.Column("asset_Status", header: "Status"),
+                     grid.Column("ii_no", header: "Issue Item No"),
+                     grid.Column("I_no", header: "Issue No"),
+                     grid.Column("ProName", header: "Product Name"),
+                  
+                }
+
+  );
+
+    if (Model.Count() > 0)
+    {
+
+        @grid.PagerList(mode: WebGridPagerModes.All,
+                    numericLinksCount: 20,
+                    firstText: "««",
+                    previousText: "«",
+                    nextText: "»",
+                    lastText: "»»")
+        ;
+    }
+
+}
+else
+{
+    <span>No Records Found</span>
+
+}
+
+

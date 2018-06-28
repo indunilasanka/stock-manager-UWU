@@ -1,0 +1,89 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.QR
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+<head>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //var model = @Html.Raw(Json.Encode(Model));
+                selectmenu(3);
+        });
+    </script>
+    <style>
+        #overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            opacity: .30;
+            filter: alpha(opacity=15);
+            -moz-opacity: .15;
+            display: none;
+        }
+    </style>
+
+    
+</head>
+
+
+
+<div class="col-md-12" id="leadsDiv">
+    <h1>QR GENERATION</h1>
+    <div class="margin">
+        <div id="overlay"></div>
+        <table class="table table-bordered">
+            <tr>
+
+                <th>
+                    Variable
+                </th>
+
+                <th>
+                    Item No
+                </th>
+
+                <th>
+                    Purchase Order
+                </th>
+
+            </tr>
+            @Html.HiddenFor(m => m.GIId, new { id = "GIId" })
+            @Html.HiddenFor(m=>m.GRNId,new { id="GRNId"})
+
+            @for (int i = 0; i < Model.GIReceivedQuantity; i++)
+            {
+                <tr>
+
+                    <td>
+                        @i
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.GIId)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.PONo)
+                    </td>
+
+                    <td>
+                        <a class="btnEditDeleteLead  btn btn-blue pull-right" href="@Url.Action("GetQR","StoreKeeper",new {GRNId =Model.GRNId,GIId=Model.GIId, i=i})"><span class="glyphicon glyphicon-play"></span>QR</a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.RN
+
+<script src="@Url.Content("~/Scripts/Apps/Store.js")" type="text/javascript"></script>
+<script type="text/javascript">
+
+    var AdminUrl = {
+
+        //ManageLeads: '@Url.Content("~/Lead/ManageLeads")',
+        //GetDesignations: '@Url.Content("~/Admin/GetDesignations")',
+        SaveRN: '@Url.Content("~/StoreKeeper/SaveRN")',
+        ReviewRN: '@Url.Content("~/StoreKeeper/ReviewRN")'
+
+
+    };
+    $(document).ready(function () {
+        selectmenu(4);
+    });
+</script>
+
+@{
+    ViewBag.Title = "Add Edit Users";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+
+<div class="col-md-12" style="padding-left: 45px !important;padding-right: 45px !important">
+    @section Headertitle {
+        @{
+            var title = Model.RNId > 0 ? "Update Return Note" : "Add New Return Note";
+        }
+
+        <h1>
+            @title
+        </h1>
+        <div class="col-md-2 pull-right" style="margin-right: -25px;">
+            <a type="button" class="btn btn-default" id="btnCancelEditLead" data-dismiss="modal" href="@Url.Action("GoBackRN","StoreKeeper")">Cancel</a>
+            @if (!Model.IsApproved)
+            {
+                <button type="button" id="savern" class="btn btn-primary">Save</button>
+            }
+        </div>
+
+        <hr />
+    }
+
+    @using (Html.BeginForm("AddEditLeads", "Admin", FormMethod.Post, new { id = "FrmAERNs" }))
+    {
+        <div class="panel panel-default" style="padding: 5px 5px 5px 5px;">
+            <div class="panel-heading" style="margin-bottom :5px;">
+                <h4>BasicDetails</h4>
+            </div>
+            <div class="row">
+                @if (!Model.IsApproved)
+                {
+                    <div class="col-md-4">
+                        <span>Supplier Name</span><span style="color:red"> *</span>
+                        @Html.DropDownListFor(m => m.SId, (IEnumerable<SelectListItem>)ViewBag.Suppliers, new { verrormsg = "Supplier is required", Id = "supplier", @class = "form-control" })
+                    </div>
+
+                    <div class="col-md-4">
+                        <span>Status</span>
+                        @Html.TextBoxFor(m => m.RNStatus, new { Id = "createddate", @class = "form-control" })
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-4">
+                        <span>Supplier Name</span><span style="color:red"> *</span>
+                        @Html.DropDownListFor(m => m.SId, (IEnumerable<SelectListItem>)ViewBag.Suppliers, new { verrormsg = "Supplier is required", Id = "supplier", @class = "form-control", @disabled = "disabled" })
+                    </div>
+
+                    <div class="col-md-4">
+                        <span>Status</span>
+                        @Html.TextBoxFor(m => m.RNStatus, new { Id = "createddate", @class = "form-control", @readonly=true })
+                    </div>
+                }
+                @Html.HiddenFor(m => m.RNId, new { Id = "RNId" })
+
+            </div>
+        </div>
+
+    }
+
+</div>

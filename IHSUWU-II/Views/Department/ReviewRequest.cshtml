@@ -1,0 +1,169 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.Requests
+
+<script src="@Url.Content("~/Scripts/Apps/Dp.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var AdminUrl = {
+
+        AddRequestItem: '@Url.Content("~/Department/AddRequestItem")',
+        SaveRequestItem: '@Url.Content("~/Department/SaveRequestItem")',
+        ProductGrid: '@Url.Content("~/Department/ProductGrid")',
+        DeleteRequestItem: '@Url.Content("~/Department/DeleteRequestItem")',
+        ReviewRequest: '@Url.Content("~/Department/ReviewRequest")',
+        GetGRMItems: '@Url.Content("~/Department/GetGRMItems")',
+        GetGRMItemsDetails: '@Url.Content("~/Department/GetGRMItemsDetails")',
+        PrintHtmlRequest: '@Url.Content("~/Department/PrintHtmlRequest")',
+        PrintHtmlRequestPDF: '@Url.Content("~/Department/PrintHtmlRequestPDF")',
+        GetSubCatogory: '@Url.Content("~/Department/GetSubCatogory")',
+        GetProductSC: '@Url.Content("~/Department/GetProductSC")'
+    };
+    $(document).ready(function () {
+        selectmenu(2);
+    });
+</script>
+@{
+    ViewBag.Title = "AddEditLeads";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+
+<div class="col-md-12" style="padding-left: 45px !important;padding-right: 45px !important">
+    @section Headertitle {
+        @{
+            var title = "Review Assest Requests";
+        }
+
+        <button type="button" id="pdfrequest" data-id="@Model.RequestId" data-option="2" class="btnEditDeleteLead  btn btn-blue pull-right" style="margin-right:10px;"><span class="glyphicon glyphicon-new-window"></span> PDF </button>
+        <button type="button" id="printrequest" data-id="@Model.RequestId" data-option="2" class="btnEditDeleteLead  btn btn-blue pull-right" style="margin-right:10px;"><span class="glyphicon glyphicon-print"></span> PRINT </button>
+
+        <a style="margin-right:10px;" class="btnEditDeleteLead  btn btn-blue pull-right" href="@Url.Action("GoBackRequest","Department")"><span class="glyphicon glyphicon-arrow-left"></span> BACK </a>
+
+        <h1>
+            @title
+        </h1>
+
+        <hr />
+    }
+
+    @using (Html.BeginForm("AddEditLeads", "Admin", FormMethod.Post, new { id = "FrmLeads" }))
+    {
+        @Html.HiddenFor(m => m.RequestId, new { Id = "RequestId" })
+    }
+
+    <div class="col-md-12">
+        <div class="row">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5" style="margin:15px">
+            <div class="row">
+
+                <div class="panel panel-default" ">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Basic Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Location Name:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.LocationName)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Location Symbol:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.LocationSymbol)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Request Date:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.RequestDate)
+                            </div>
+                        </div>
+ 
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6" style="margin:15px">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Other Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.RequestStatus)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Request No:</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.RequestNo)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default" style="padding: 5px 5px 5px 5px;" id="ProductDetailsDiv">
+        <div class="panel-heading">
+            <h4>Assest Request Items Details</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12 padding-5 pull-right">
+                <button type="button" id="btnAddrequestitemDetails" class="btn btn-primary pull-right btn-blue margin-left-10" style="margin:5px;"><span class="glyphicon glyphicon-plus-sign"></span> ADD NEW ITEM </button>
+
+                <div id="requestitem-grid" style="margin-top: 5px">
+                    @if (Model.RequestItemList != null)
+                    {
+                        @Html.Partial("_RequestItemsGrid", Model.RequestItemList)
+                    }
+                    else
+                    {
+                        <span>No Records Found</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <a style="margin-right: 10px;" class="btn btn-default" href="@Url.Action("GoBackRequest","Department")"> Close</a>
+    </div>
+
+</div>
+
+<div id="secondary-dialog-requestitems" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>

@@ -1,0 +1,58 @@
+﻿@model Login.Models.User
+@{
+    ViewBag.Title = "Login";
+    Layout = "../Shared/_LayoutLogin.cshtml";
+}
+
+<head>
+    <script>
+    $(function () {
+        $("#loginWindow").show();
+    });
+    </script>
+</head>
+
+<!--popUp Login Window-->
+<body class="hold-transition login-page" style="background-color:dimgray">
+    <div id="loginWindow">
+        <div class="form-group">
+            <img src="/images/so-logo.png" id="logo" />
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @placeholder = "Enter Your Username", id = "userName" })
+
+        </div>
+        <div class="form-group">
+            @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Enter Your Password", id = "password" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Login" class="form-control" id="btnSubmit" />
+        </div>
+
+        <!-- /.social-auth-links -->
+        @*<div class="row">
+            <div class="col-xs-12">
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox" style="text-align:center"> Remember Me
+                        <a href="#" style="margin-left:127px !important">I forgot my password</a><br>
+                    </label>
+                </div>
+            </div>
+        </div>*@
+
+
+
+        <div id="spinner" class="spinner">
+            <img id="img-spinner" src="/images/spinner3.gif" alt="Loading" />
+        </div>
+
+        <div class="alert alert-danger alert-dismissible" id="error">
+            @Html.DisplayFor(model => model.LogErrorMsg, new { @class = "form-control", id = "userName" })
+        </div>
+</div>
+
+</body>
+
+
+

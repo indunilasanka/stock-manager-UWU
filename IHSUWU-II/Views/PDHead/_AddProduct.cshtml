@@ -1,0 +1,131 @@
+﻿@model Login.Models.POItemList
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+<script src="@Url.Content("~/Scripts/Apps/PDH.js")" type="text/javascript"></script>
+
+@{
+    var title = Model.PIId > 0 ? "Update Item" : "Add Item";
+}
+
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "AddEditProduct" }))
+            {
+                if (!Model.IsApproved)
+                {
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Main Assests<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.MCId, (IEnumerable<SelectListItem>)ViewBag.MainAssests, new { verrormsg = "Please select a Main catogory!", Id = "MCId", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Sub Assests<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.SCId, (IEnumerable<SelectListItem>)ViewBag.SubAssests, new { verrormsg = "Please select a Sub catogory!", Id = "SCId", @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Product<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.PROId, (IEnumerable<SelectListItem>)ViewBag.ProductName, new { verrormsg = "Please select a Product!", Id = "Productid", @class = "form-control", OnChange = "PDH.getProductNameById();" })
+                        </div>
+                    </div>
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Description<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.PIDescription, new { verrormsg = "Please enter a Desciption!", Id = "des", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Quantity<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.PIQuantity, new { verrormsg = "Please enter a Item Quantity!", @class = "form-control", Id = "quantity" })
+                            @Html.HiddenFor(m => m.POId, new { Id = "POId" })
+                            @Html.HiddenFor(m => m.PIId, new { Id = "PIId" })
+
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Unit Price<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.PIUnitPrice, new { verrormsg = "Please enter a Item Unit Price!", @class = "form-control", Id = "unitPrice" })
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Main Assests<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.MCId, (IEnumerable<SelectListItem>)ViewBag.MainAssests, new { verrormsg = "Please select a Main catogory!", Id = "MCId", @class = "form-control", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Sub Assests<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.SCId, (IEnumerable<SelectListItem>)ViewBag.SubAssests, new { verrormsg = "Please select a Sub catogory!", Id = "SCId", @class = "form-control", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Product<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.PROId, (IEnumerable<SelectListItem>)ViewBag.ProductName, new { verrormsg = "Please select a Product!", Id = "Productid", @class = "form-control", @disabled = "disabled" })
+                        </div>
+                    </div>
+
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Description<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.PIDescription, new { verrormsg = "Please enter a Desciption!", Id = "des", @class = "form-control", @readonly = true })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Quantity<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.PIQuantity, new { verrormsg = "Please enter a Item Quantity!", @class = "form-control", Id = "quantity", @readonly = true })
+                            @Html.HiddenFor(m => m.POId, new { Id = "POId" })
+                            @Html.HiddenFor(m => m.PIId, new { Id = "PIId" })
+
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Unit Price<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.PIUnitPrice, new { verrormsg = "Please enter a Item Unit Price!", @class = "form-control", Id = "unitPrice", @readonly = true })
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+
+                    </div>
+                </div>
+            }
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @if (!Model.IsApproved)
+                {
+                    <input type="button" id="btnSubmitProduct" class="btn btn-primary" value="Save" />
+                }
+
+            </div>
+
+        </div>
+    </div>
+</div>

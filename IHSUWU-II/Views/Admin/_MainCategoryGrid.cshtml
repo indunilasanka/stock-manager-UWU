@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Login.Models.MainCatogory>
+
+@{
+    var grid = new WebGrid(Model, rowsPerPage: 10);
+}
+@if (@Model != null && @Model.Any())
+{
+    @grid.Table(tableStyle: "table table-bordered table-striped table-hover tbnew",
+                headerStyle: "head blue",
+                columns: new[]
+                {
+                     grid.Column("MCId", header: "Assest Id",format: (item) => new HtmlString(string.Format("<a href =\"ReviewMainCatogory?MCId="+ @item.MCId +"\" " +"  style=\"color:#1A699C !Important;font-weight: bold;\" data-option=\"3\" data-id=\"{0}\">{0} </a>",@item.MCId)),canSort:true),
+                     grid.Column("MCName", header: "Assest Name"),
+                     grid.Column("MCSymbol", header: "Assest Symbol"),
+                     grid.Column("", header:"",
+                     format: (item) => new HtmlString(string.Format("<a href=\"#\" data-id=\"{0}\"  data-id1=\"{1}\" data-option=\"1\" ><span class=\"glyphicon glyphicon-pencil\"></span></a><a href=\"#\" data-id=\"{0}\" data-id1=\"{1}\" data-option=\"2\" ><span class=\"glyphicon glyphicon-trash\"></span></a>",
+                        @item.MCId, @item.MCId)
+                          ),canSort:true, style: "WebGridActionWidth")
+                }
+
+  );
+
+    if (Model.Count() > 0)
+    {
+
+        @grid.PagerList(mode: WebGridPagerModes.All,
+                    numericLinksCount: 15,
+                    firstText: "««",
+                    previousText: "«",
+                    nextText: "»",
+                    lastText: "»»")
+        ;
+    }
+
+}
+else
+{
+    <span>No Records Found</span>
+
+}
+
+
+

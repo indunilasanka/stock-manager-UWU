@@ -1,0 +1,159 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+
+@{
+    User userContext = (User)Session[SessionConstants.SESSION_CONTEXT_INSTANCE];
+}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IHSUWU-II</title>
+    <link href="@Url.Content("~/Content/themes/base/jquery.ui.all.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ionicons.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/css/font-awesome.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/AdminLTE.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap-datetimepicker.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/custom_validator.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery-2.0.3.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.10.3.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/app.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask-multi-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask.date.extensions-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask.extensions-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask.numeric.extensions-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask.phone.extensions-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/jquery.inputmask/jquery.inputmask.regex.extensions-3.0.55.js")"></script>
+    <script src="@Url.Content("~/Scripts/moment.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootstrap-datetimepicker.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootbox.js")"></script>
+    <script src="@Url.Content("~/Scripts/bootbox.min.js")"></script>
+
+  
+    @RenderSection("scripts", required: false)
+</head>
+
+<body class="skin-black">
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <a href="index.html" class="logo nav_logo">
+            <!-- Add the class icon to your logo image or logo icon to add the margining -->
+        </a>
+        <!-- Header Navbar: style can be found in header.less -->
+        <nav class="navbar navbar-static-top" role="navigation">
+            <!-- Sidebar toggle button-->
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    <!-- Messages: style can be found in dropdown.less-->
+                    <li class="dropdown messages-menu">
+                    </li>
+                    <!-- Notifications: style can be found in dropdown.less -->
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span>@userContext.FullName  <i class="caret"></i></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- User image -->
+                            <li class="user-header bg-light-blue">
+                                <img src="~/Content/Images/avatar5.png" class="img-circle" alt="User Image" />
+                                <p style="font-size:15px">Logged in as @userContext.DesignationName of @userContext.DivisionName
+                                    @userContext.Email
+                                    @*Super Admin - Car rental
+                                    <small>Navator Member since Nov. 2015</small>*@
+                                </p>
+                            </li>
+                            <!-- Menu Body -->
+                            <li class="user-body">
+
+                            </li>
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-right">
+                                    <a href="@Url.Action("LogOut", "Home")" class="btn btn-default btn-flat">Sign out</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="wrapper row-offcanvas row-offcanvas-left" >
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="left-side sidebar-offcanvas">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar" >
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="~/Content/Images/avatar5.png" class="img-circle" alt="User Image" />
+                    </div>
+                    <div class="pull-left info">
+                        <p>Hello, @userContext.FullName</p>
+
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu">
+                    <li class="active">
+
+                        <a href="@Url.Action("Index", "PDWorker")">
+                            <i class="fa fa-dashboard"></i> DASHBOARD
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ManagePO", "PDWorker")">
+                            <i class="fa fa-users"></i> <span>PURCHASE ORDER</span>
+                        </a>
+                    </li>
+                   
+                    
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Right side column. Contains the navbar and content of the page -->
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                @RenderSection("Headertitle", required: false)
+
+            </section>
+
+            <!-- Main content -->
+            @*<section class="container row">*@
+            <section class="row">
+                <!--  content goes here -->
+                @RenderBody()
+
+
+
+            </section><!-- /.content -->
+        </aside><!-- /.right-side -->
+    </div><!-- ./wrapper -->
+    <script type="text/javascript">
+        var UrlSuperAdminConfig =
+           {
+               @*EditFeature: '@Url.Content("~/ClientFeature/EditFeature")',
+               GetAllFeature: '@Url.Content("~/ClientFeature/GetAllClientFeatures")',*@
+           };
+    </script>
+</body>
+</html>
+

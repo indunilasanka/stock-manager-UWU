@@ -1,0 +1,193 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.Issue
+
+@{
+    ViewBag.Title = "HtmlInvoice";
+    Layout = null;
+
+}
+<style>
+    .table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    @@media print {
+        .headingblack {
+            background-color: #000000 !important;
+            -webkit-print-color-adjust: exact;
+        }
+
+        .headingash {
+            background-color: #F3F0F0 !important;
+            -webkit-print-color-adjust: exact;
+            page-break-inside: avoid;
+            column-span: all;
+            page-break-after: avoid;
+        }
+
+        .page {
+            width: 90%;
+            page-break-after: always;
+        }
+    }
+</style>
+
+<table style="width:90%;border:solid 2px;" align="center" class="page">
+    <tr id="address">
+        <td style="padding-left:2% ;">
+
+            @*<img src="~/Content/Images/navotar-logo.png"; height="75%" />*@
+            @*@if (@ViewBag.ImagePath != null)
+                {
+                    <img src="@ViewBag.ImagePath" style="max-height:100px; max-width:400px;" />
+
+                    //<img src="@Url.Action("GetImage", "Base", new { path=@ViewBag.ImagePath })" class="img-responsive"  style="max-width:400px; max-height:100px;"/>
+                }*@
+
+        </td>
+        <td>
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%">
+                <tr><td>Uva Wellassa University</td></tr>
+                <tr><td>Sri Lanka</td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr style="background-color:#000000;" class="headingblack">
+        <td colspan="2">
+            <table id="subjectLine" align="center">
+                <tr>
+                    <td style="color:white;height:50%;font-size: 20px;">
+                        ISSUE NOTE
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <table style="width:100%; text-align:left;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td> Stores Ref. No: ..................................................................</td></tr>
+            </table>
+        </td>
+        <td>
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>@DateTime.Now</td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:larger;line-height: 95%;border-bottom:1px solid black;">
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td>Following Materials/Goods are needed by:</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+   
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:larger;line-height: 95%;border-bottom:1px solid black;">
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td>I certified that goods mentioned below are essential for the use of this department/section/hall and the minimum quantity required has been requested!</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td>Requested By: ..................................................</td></tr>
+                <tr><td></td></tr>
+                <tr><td>Recommended By: ................................................  (Dept.Head/Div.Head/Warden)</td></tr>
+                <tr><td></td></tr>
+                <tr><td>Request Approved/Not Approved: .................................  (Vice Chancellar/Dean/Registar/Bursar)</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+
+
+    @if (Model.IssueItemList.Count > 0)
+    {
+        int i = 0;
+        <tr id="section3">
+
+            <td colspan="2" style="font-size:25px">
+                <table class="table table-bordered" width="100%" style="border:1px solid black;font-size:25px">
+                    <thead>
+                        <tr class="head" style="background-color: #F3F0F0  !important;color: black !important;padding: 5px 10px;border:1px solid black">
+                            <th style="text-align:justify">Serial No</th>
+                            <th style="text-align: justify;">SLF</th>
+                            <th style="text-align:justify">Description</th>
+                            <th style="text-align: justify;">Qty Issued</th>
+                            <th style="text-align: justify;">Qty Remaining</th>
+                            <th style="text-align: justify;">Unit Price(Rs)</th>
+                            <th style="text-align: right;">Value(Rs)</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var invoiceItem in Model.IssueItemList)
+                        {
+                            i = i + 1;
+                            <tr style="border:1px solid black">
+                                <td style="text-align:justify"></td>
+                                <td style="text-align:justify"></td>
+                                <td style="text-align:justify">@invoiceItem.ProName</td>
+                                <td style="text-align:justify">@invoiceItem.IssuedQuantity</td>
+                                <td style="text-align:justify">@invoiceItem.RemainingQuantity</td>
+                                <td style="text-align: justify;">@string.Format("{0:0.00}", invoiceItem.ItemUnitPrice)</td>
+                                <td style="text-align: right;">@string.Format("{0:0.00}", invoiceItem.ItemTotal)</td>
+                                
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr id="section4">
+            <td colspan="2">
+                <table id="totalInfo" align="left" width="100%" style="font-size:25px">
+                    <tr>
+                        <td><b>Total : </b></td>
+                        <td style="text-align:right; border-top:solid black 1px;  border-bottom-style:double">@Html.DisplayFor(m => m.Total)</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:larger;line-height: 95%;border-bottom:1px solid black;">
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td>Materials/Goods mentioned above have been issued to ...............................................</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td >Issued and Recorded By: ................................................  (Store Keeper/CAA/OA)</tdsty></tr>
+                <tr><td></td></tr></br>
+                <tr><td style="text-align:right">Name of the Recipient: ..........................................</td></tr>
+                <tr><td></td></tr>
+                <tr><td style="text-align:right">Signature: ...............................................................</td></tr>
+                <tr><td></td></tr>
+                <tr><td style="text-align:right">Date: @DateTime.Now  </td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+
+</table>

@@ -1,0 +1,129 @@
+﻿
+#texture
+{
+    z-index: -5;
+    position : absolute;
+    top:0px;
+    bottom:0px;
+    width: 100%;
+    height:100%;
+    background:
+    radial-gradient(black 15%, transparent 16%) 0 0,
+    radial-gradient(black 15%, transparent 16%) 8px 8px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+    background-color:#282828;
+    background-size:16px 16px;
+
+}
+
+#loginWindow 
+{
+    border-radius: 7px;
+    background: #edeff1;
+    margin:100px auto 0;
+    padding-left:30px;  
+    position:relative;
+    width:440px;
+    height: 270px;
+    display:None;
+    box-shadow: 0 0 18px;
+}
+
+#btnSubmit
+{
+    max-width: none;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    width: 380px;
+    margin-top: 20px;
+    background-color: #428bca;   
+}
+
+#btnSubmit:hover {
+    background-color: #357ebd;
+}
+#btnother
+{
+    max-width: none;
+    color: white;
+    font-weight: bold;
+    height: 40px;
+    width: 380px;
+    margin-top: 20px;
+    background-color: #428bca;   
+}
+
+#btnother:hover {
+    background-color: #357ebd;
+}
+#userName :before
+{
+    content: "\f000";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+/*--adjust as necessary--*/
+    color: #000;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+#userName , #password
+{
+    max-width: none;
+    width: 380px;
+    height: 40px;
+    padding-left: 15px;
+}
+
+#error 
+{
+    display: none;
+    width: 440px;
+    position:relative;
+    z-index: -2;
+    margin:6px auto 0;
+    color: #ff0000;
+    font-size: 18px;
+    margin-left: -30px;
+    background:#edeff1;
+}
+
+#closeAlert
+{
+    display: none;
+    position:relative;
+    margin:-40px auto 0;
+    margin-right: 2px;
+    padding: 2px;
+    padding-bottom: 21px;
+    padding-top: 0px;
+    height: 20px;
+    z-index: 10;
+    margin-left: 870px;
+}
+
+#logo 
+{
+    width: 380px;
+    height: 70px;
+    margin-bottom: 10px;
+}
+
+.spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px; 
+    margin-top: -50px; 
+    z-index:1234;
+    width: 100px;
+    height: 100px;
+    display: None;  
+}

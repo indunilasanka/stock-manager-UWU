@@ -1,0 +1,139 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.Requests
+
+@{
+    ViewBag.Title = "HtmlInvoice";
+    Layout = null;
+    
+}
+<style>
+    .table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+    @@media print { 
+   .headingblack { 
+        background-color: #000000 !important;
+       -webkit-print-color-adjust: exact; 
+  
+ 
+    }
+   
+   .headingash{
+       background-color: #F3F0F0 !important;
+         -webkit-print-color-adjust: exact; 
+         page-break-inside: avoid;
+         column-span : all;
+         page-break-after: avoid;
+   }
+   .page {
+       width: 90%;
+        page-break-after: always;
+        
+    }
+
+        
+}
+
+
+
+</style>
+
+<table style="width:90%;border:solid 2px;" align="center" class="page" >
+    <tr id="address">
+        <td style="padding-left:2% ;">
+
+            @*<img src="~/Content/Images/navotar-logo.png"; height="75%" />*@
+            @*@if (@ViewBag.ImagePath != null)
+                {
+                    <img src="@ViewBag.ImagePath" style="max-height:100px; max-width:400px;" />
+
+                    //<img src="@Url.Action("GetImage", "Base", new { path=@ViewBag.ImagePath })" class="img-responsive"  style="max-width:400px; max-height:100px;"/>
+                }*@
+
+        </td>
+        <td>
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%">
+                <tr><td>Uva Wellassa University</td></tr>
+                <tr><td>Sri Lanka</td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr style="background-color:#000000;" class="headingblack">
+        <td colspan="2">
+            <table id="subjectLine" align="center">
+                <tr>
+                    <td style="color:white;height:50%;font-size: 20px;">
+                        ASSEST REQUEST NOTE
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr >
+        <td >
+            <table style="width:100%; text-align:left;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>Assest Request Number : @Model.RequestNo</td></tr>
+            </table>
+        </td>
+        <td >
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>@DateTime.Now</td></tr>
+            </table>
+        </td>
+    </tr>
+        
+    <tr>
+        <td colspan="2">
+            <table  style="width:100%; text-align:left;font-size:large;line-height: 95%;border-bottom:1px solid black;">
+                <tr><td></td></tr>
+                <tr><td>Location Details : @Model.LocationName &emsp; @Model.LocationSymbol</td></tr>
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+  
+    @if (Model.RequestItemList.Count > 0)
+    {
+        int i = 0;
+        <tr id="section3">
+
+            <td colspan="2" style="font-size:25px">
+                <table class="table table-bordered" width="100%" style="border:1px solid black;font-size:25px">
+                    <thead>
+                        <tr class="head" style="background-color: #F3F0F0  !important;color: black !important;padding: 5px 10px;border:1px solid black">
+                            <th style="text-align:justify">Item No</th>
+                            <th style="text-align:justify">Product</th>
+                            <th style="text-align: justify;">Description</th>
+                            <th style="text-align: justify;">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var invoiceItem in Model.RequestItemList)
+                        {
+                            i = i + 1;
+                            <tr style="border:1px solid black">
+                                <td style="text-align:justify">@i</td>
+                                <td style="text-align:justify">@invoiceItem.ProName</td>
+                                <td style="text-align:justify">@invoiceItem.RequestDescription</td>
+                                <td style="text-align:justify">@invoiceItem.RequestQuantity</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    }
+
+   
+
+</table>

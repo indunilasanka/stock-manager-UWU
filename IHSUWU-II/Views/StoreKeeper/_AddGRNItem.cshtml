@@ -1,0 +1,114 @@
+﻿@model Login.Models.GRNItemList
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+<script src="@Url.Content("~/Scripts/Apps/Store.js")" type="text/javascript"></script>
+
+@{
+    var title = Model.GIId > 0 ? "Update Item" : "Add Item";
+}
+
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "AddEditGRNItem" }))
+            {
+                if (!Model.IsApproved)
+                {
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Purchase Order<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.POId, (IEnumerable<SelectListItem>)ViewBag.Purchase, new { verrormsg = "Please select a Purchase Order!", Id = "poid", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Purchase Order Item<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.PIId, (IEnumerable<SelectListItem>)ViewBag.PIItem, new { verrormsg = "Please select a Purchase Order Item!", Id = "piid", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Description<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.GIDescription, new { verrormsg = "Please enter a Desciption!", Id = "des", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Received Quantity<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.GIReceivedQuantity, new { verrormsg = "Please enter a valid Item Received Quantity!", @class = "form-control", Id = "quantity" })
+                            <label id="qty" style="color:red;"></label>
+                            @Html.HiddenFor(m => m.RQ, new { Id = "rq" })
+                            @Html.HiddenFor(m => m.GRNId, new { Id = "GRNId" })
+                            @Html.HiddenFor(m => m.GIId, new { Id = "GIId" })
+
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Unit Price<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.GIUnitPrice, new { verrormsg = "Please enter a Item Unit Price!", @class = "form-control", Id = "unitPrice" })
+                            <label id="up" style="color:red;"></label>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Purchase Order<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.POId, (IEnumerable<SelectListItem>)ViewBag.Purchase, new { verrormsg = "Please select a Purchase Order!", Id = "poid", @class = "form-control", @disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Purchase Order Item<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.DropDownListFor(m => m.PIId, (IEnumerable<SelectListItem>)ViewBag.PIItem, new { verrormsg = "Please select a Purchase Order Item!", Id = "piid", @class = "form-control", @disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Description<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.GIDescription, new { verrormsg = "Please enter a Desciption!", Id = "des", @class = "form-control",@readonly = true })
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Received Quantity<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.GIReceivedQuantity, new { verrormsg = "Please enter a valid Item Received Quantity!", @class = "form-control", Id = "quantity", @readonly = true })
+                            <label id="qty" style="color:red;"></label>
+                            @Html.HiddenFor(m => m.RQ, new { Id = "rq" })
+                            @Html.HiddenFor(m => m.GRNId, new { Id = "GRNId" })
+                            @Html.HiddenFor(m => m.GIId, new { Id = "GIId" })
+
+                        </div>
+                    </div>
+                    <div class="row form">
+                        <label for="Class" class="col-md-4">Unit Price<span style="color:red"> *</span></label>
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(m => m.GIUnitPrice, new { verrormsg = "Please enter a Item Unit Price!", @class = "form-control", Id = "unitPrice", @readonly = true })
+                            <label id="up" style="color:red;"></label>
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                    </div>
+                </div>
+            }
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                @if (!Model.IsApproved) {
+                    <input type="button" id="btnSubmitGRMItem" class="btn btn-primary" value="Save" />
+                }
+            </div>
+
+        </div>
+    </div>
+</div>

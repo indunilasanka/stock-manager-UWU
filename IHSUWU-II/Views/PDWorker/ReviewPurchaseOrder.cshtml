@@ -1,0 +1,228 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.PO
+
+<script src="@Url.Content("~/Scripts/Apps/PD.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    var AdminUrl = {
+
+        AddProduct: '@Url.Content("~/PDWorker/AddProduct")',
+        SaveProduct: '@Url.Content("~/PDWorker/SaveProduct")',
+        ProductGrid: '@Url.Content("~/PDWorker/ProductGrid")',
+        DeleteProduct: '@Url.Content("~/PDWorker/DeleteProduct")',
+        ReviewPO: '@Url.Content("~/PDWorker/ReviewPO")',
+        PrintHtmlInovice: '@Url.Content("~/PDWorker/PrintHtmlInovice")',
+        GetSubCatogory: '@Url.Content("~/PDWorker/GetSubCatogory")',
+        GetProductSC: '@Url.Content("~/PDWorker/GetProductSC")'
+
+    };
+    $(document).ready(function () {
+        selectmenu(2);
+    });
+</script>
+@{
+    ViewBag.Title = "AddEditLeads";
+    Layout = "_SuperAdmin.cshtml";
+
+}
+
+
+<div class="col-md-12" style="padding-left: 45px !important;padding-right: 45px !important">
+    @section Headertitle {
+        @{
+            var title = "Review Purchase Order";
+        }
+
+        @*<button type="button" id="pdf" data-id="@Model.POId" data-option="2" class="btnEditDeleteLead  btn btn-blue pull-right" style="margin-right:10px;"><span class="glyphicon glyphicon-new-window"></span> PDF </button>
+        <button type="button" id="print" data-id="@Model.POId" data-option="2" class="btnEditDeleteLead  btn btn-blue pull-right" style="margin-right:10px;"><span class="glyphicon glyphicon-print"></span> PRINT </button>*@
+
+        @if (Model.IsApproved)
+        {
+            <label style="color:red;">THIS PURCHASE ORDER ACCEPTED</label>
+        }
+        <a style="margin-right:10px;" class="btnEditDeleteLead  btn btn-blue pull-right" href="@Url.Action("GoBackPO","PDWorker")"><span class="glyphicon glyphicon-arrow-left"></span> BACK </a>
+
+        <h1>
+            @title
+        </h1>
+
+        <hr />
+    }
+
+    @using (Html.BeginForm("AddEditLeads", "Admin", FormMethod.Post, new { id = "FrmLeads" }))
+    {
+        @Html.HiddenFor(m => m.POId, new { Id = "POId" })
+    }
+
+    <div class="col-md-12">
+        <div class="row">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-5" style="margin:15px">
+            <div class="row">
+
+                <div class="panel panel-default" ">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Basic Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Order Number :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.PONo)
+                                @Html.HiddenFor(m => m.POId)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Supplier :</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.SName)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Created Date:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POCreatedDate)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Due Date:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.PODueDate)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Quatation Date:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POQuatationDate)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Status:</label>
+                            </div>
+                            <div class="col-md-9 col-sm-4 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POStatus)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6" style="margin:15px">
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#3c8dbc">
+                        <h4 style="color:white">Other Details</h4>
+                    </div>
+                    <div id="panel-looking-info" class="panel-body in">
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Tendor No:</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POTenderNo)
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>File No:</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POFileNo)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Total(No Tax):</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POTotalWithoutVat)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label> Vat Amount:</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POVat)
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-3 col-xs-5 col-lg-4">
+                                <label>Total:</label>
+                            </div>
+                            <div class="col-md-10 col-sm-9 col-xs-4 col-lg-8">
+                                @Html.DisplayFor(m => m.POTotal)
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div class="panel panel-default" style="padding: 5px 5px 5px 5px;" id="ProductDetailsDiv">
+        <div class="panel-heading">
+            <h4>Purchase Order Items Details</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-12 padding-5 pull-right">
+
+                @if (!Model.IsApproved)
+                {
+                    <button type="button" id="btnAddProductDetails" class="btn btn-primary pull-right btn-blue margin-left-10" style="margin:5px;"><span class="glyphicon glyphicon-plus-sign"></span> ADD NEW ITEM </button>
+                }
+
+                <div id="products-grid" style="margin-top: 5px">
+                    @if (Model.POIList != null)
+                    {
+                        @Html.Partial("_ProductsGrid", Model.POIList)
+                    }
+                    else
+                    {
+                        <span>No Records Found</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal-footer">
+        <a style="margin-right: 10px;" class="btn btn-default" href="@Url.Action("GoBackPO", "PDWorker")"> Close</a>
+    </div>
+
+</div>
+
+<div id="secondary-dialog-products" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>

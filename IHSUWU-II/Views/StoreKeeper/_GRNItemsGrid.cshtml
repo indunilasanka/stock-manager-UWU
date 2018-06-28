@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Login.Models.GRNItemList>
+
+@{
+    var grid = new WebGrid(Model, rowsPerPage: 10);
+}
+@if (@Model != null && @Model.Any())
+{
+    @grid.Table(tableStyle: "table table-bordered table-striped table-hover tbnew",
+                headerStyle: "head blue",
+                columns: new[]
+                {
+                     grid.Column("PONo", header: "Purchase Order No"),
+                     grid.Column("GIDescription", header: "Description" ),
+                     grid.Column("GIUnitPrice", header: "Rate",format: (item) => item.GIUnitPrice!=null ? item.GIUnitPrice.ToString("") : "", style:"right"),
+                     grid.Column("GIReceivedQuantity", header: "Received Quantity" ),
+                     grid.Column("GITotal", header: "Total" ),
+                     grid.Column("", header:"QR-Status", format: (item) =>
+                    {
+                        if (item.IsGenerated == true)
+                        {
+                            return Html.Raw(string.Format("<text style=\"color:#006600;\">{0}</text>", "Generated"));
+                        }
+
+                        else
+                        {
+                            return new HtmlString(string.Format("<a href =\"QRGenaration?GIId="+ @item.GIId +"\" " +"  style=\"color:#1A699C !Important;font-weight: bold;\" data-option=\"3\" data-id=\"{0}\">{0} </a>","QR"));
+                        }
+                    }, canSort:true),
+                     grid.Column("", header:"",
+                      format: (item) => new HtmlString(string.Format("<a href=\"#\" data-id=\"{0}\" data-id1=\"{1}\" data-id2=\"{2}\" data-option=\"1\" ><span class=\"glyphicon glyphicon-pencil\"></span></a><a href=\"#\" data-id=\"{0}\" data-id1=\"{1}\" data-id2=\"{2}\" data-option=\"2\" ><span class=\"glyphicon glyphicon-trash\"></span></a>",
+                        @item.GIId,@item.GIId,@item.IsApproved)
+                          ),canSort:true, style: "WebGridActionWidth")
+
+
+
+
+                }
+
+  )
+    ;
+    if (Model.Count() > 0)
+    {
+
+        @grid.PagerList(mode: WebGridPagerModes.All,
+                    numericLinksCount: 15,
+                    firstText: "««",
+                    previousText: "«",
+                    nextText: "»",
+                    lastText: "»»")
+        ;
+    }
+
+}
+else
+{
+    <span>No Records Found</span>
+
+}

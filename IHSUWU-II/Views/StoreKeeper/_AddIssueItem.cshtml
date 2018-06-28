@@ -1,0 +1,66 @@
+﻿@model Login.Models.IssueItem
+
+@{
+    ViewBag.Title = "AddProduct";
+}
+<script src="@Url.Content("~/Scripts/Apps/Store.js")" type="text/javascript"></script>
+
+@{
+    var title = Model.IItemId > 0 ? "Update Item" : "Add Item";
+}
+
+
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">@title</h4>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("", "", FormMethod.Post, new { @id = "AddEditIssueItem" }))
+            {
+                <div class="row form">
+                    <label for="Class" class="col-md-4">Assest Request<span style="color:red"> *</span></label>
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(m => m.RequestId, (IEnumerable<SelectListItem>)ViewBag.Request, new { verrormsg = "Please select a Assest Request!", Id = "poid", @class = "form-control" })
+                    </div>
+                </div>
+                <div class="row form">
+                    <label for="Class" class="col-md-4">Request Item<span style="color:red"> *</span></label>
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(m => m.RequestItemId, (IEnumerable<SelectListItem>)ViewBag.RItem, new { verrormsg = "Please select a Assest Request Item!", Id = "piid", @class = "form-control" })
+                        <label id="product" style="color:red"></label>
+                    </div>
+                </div>
+
+                <div class="row form">
+                    <label for="Class" class="col-md-4">Issued Quantity<span style="color:red"> *</span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.IssuedQuantity, new { verrormsg = "Please enter a valid Item Issued Quantity!", @class = "form-control", Id = "quantity" })
+                        <label id="rq" style="color:red"></label>
+                        @Html.HiddenFor(m => m.IId, new { Id = "IId" })
+                        @Html.HiddenFor(m => m.IItemId, new { Id = "IItemId" })
+                        @Html.HiddenFor(m => m.PROId, new { Id = "PROId" })
+
+                    </div>
+                </div>
+                <div class="row form">
+                    <label for="Class" class="col-md-4">Unit Price<span style="color:red"> *</span></label>
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.ItemUnitPrice, new { verrormsg = "Please enter a Item Unit Price!", @class = "form-control", Id = "unitPrice" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+
+                    </div>
+                </div>
+            }
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <input type="button" id="btnSubmitIssueItem" class="btn btn-primary" value="Save" />
+            </div>
+
+        </div>
+    </div>
+</div>

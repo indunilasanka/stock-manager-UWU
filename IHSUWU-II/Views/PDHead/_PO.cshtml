@@ -1,0 +1,209 @@
+﻿@using Login.Models.Constants;
+@using Login.Models;
+@model Login.Models.PO
+
+@{
+    ViewBag.Title = "HtmlInvoice";
+    Layout = null;
+    
+}
+<style>
+    .table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+    @@media print { 
+   .headingblack { 
+        background-color: #000000 !important;
+       -webkit-print-color-adjust: exact; 
+  
+ 
+    }
+   
+   .headingash{
+       background-color: #F3F0F0 !important;
+         -webkit-print-color-adjust: exact; 
+         page-break-inside: avoid;
+         column-span : all;
+         page-break-after: avoid;
+   }
+   .page {
+       width: 90%;
+        page-break-after: always;
+        
+    }
+
+        
+}
+
+
+
+</style>
+
+<table style="width:90%;border:solid 2px;" align="center" class="page" >
+    <tr id="address">
+        <td style="padding-left:2% ;">
+
+            @*<img src="~/Content/Images/navotar-logo.png"; height="75%" />*@
+            @*@if (@ViewBag.ImagePath != null)
+                {
+                    <img src="@ViewBag.ImagePath" style="max-height:100px; max-width:400px;" />
+
+                    //<img src="@Url.Action("GetImage", "Base", new { path=@ViewBag.ImagePath })" class="img-responsive"  style="max-width:400px; max-height:100px;"/>
+                }*@
+
+        </td>
+        <td>
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%">
+                <tr><td>Uva Wellassa University</td></tr>
+                <tr><td>Sri Lanka</td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr style="background-color:#000000;" class="headingblack">
+        <td colspan="2">
+            <table id="subjectLine" align="center">
+                <tr>
+                    <td style="color:white;height:50%;font-size: 20px;">
+                        PURCHASE ORDER
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr >
+        <td >
+            <table style="width:100%; text-align:left;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>Purchase Order Number : @Model.PONo</td></tr>
+            </table>
+        </td>
+        <td >
+            <table style="width:100%; text-align:right;font-size:large;line-height: 95%;border:1px solid black !important;">
+                <tr><td>@DateTime.Now</td></tr>
+            </table>
+        </td>
+    </tr>
+        
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:medium;line-height: 95%">
+                <tr><td>All Invoices for goods or services supply on this purchase order should be sent in duplicate direct to the Bursar,Uva Wellassa University,Passara Road,Badulla</td></tr>
+                <tr><td>TO :</td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="1">
+            <table style="width:100%; text-align:left;font-size:large;line-height: 100%;border:1px solid black !important;">
+                <tr>
+                    <td>M/s.</td>
+                </tr>
+                <tr><td> &emsp;&emsp;&emsp;&emsp; @Model.SName</td></tr>
+                <tr><td> &emsp;&emsp;&emsp;&emsp; @Model.SAddress</td></tr>
+                <tr><td> &emsp;&emsp;&emsp;&emsp; @Model.SMobile</td></tr>
+            </table>
+        </td>
+        <td colspan="1">
+            <table style="width:100%; text-align:left;font-size:large;line-height: 100%;border:1px solid black !important;">
+                <tr><td>File No: @Model.POFileNo</td></tr>
+                <tr><td>Tender No: @Model.POTenderNo</td></tr>
+                <tr><td>Vice Chancellar/</td></tr>
+                <tr><td>Resistrals Approval: </td></tr>
+            </table>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:medium;line-height: 95%">
+                <tr><td></td></tr>
+                <tr><td>Please Supply the under mentioned goods/services together with your advice to StoreKeeper. This order has reference to your response for our quoatation dated : @Model.POQuatationDate</td></tr>
+                <tr><td></td></tr>
+            </table>
+        </td>
+    </tr>
+
+    @if (Model.POIList.Count > 0)
+        {
+        int i = 0;
+        <tr id="section3">
+
+            <td colspan="2" style="font-size:20px">
+                <table class="table table-bordered" width="100%" style="border:1px solid black;font-size:20px">
+                    <thead>
+                        <tr class="head" style="background-color: #F3F0F0  !important;color: black !important;padding: 5px 10px;border:1px solid black">
+                            <th style="text-align:justify">Item No</th>
+                            <th style="text-align:justify">Quantity</th>
+                            <th style="text-align: justify;">Unit</th>
+                            <th style="text-align: justify;">Description</th>
+                            <th style="text-align: justify;">Rate</th>
+                            <th style="text-align: right;">Amount(Rs)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var invoiceItem in Model.POIList)
+                        {
+                            i = i + 1;
+                            <tr style="border:1px solid black">
+                                <td style="text-align:justify">@i</td>
+                                <td style="text-align:justify">@invoiceItem.PIQuantity</td>
+                                <td style="text-align:justify">Nos.</td>
+                                <td style="text-align:justify">@invoiceItem.PIDescription</td>
+                                <td style="text-align: justify;">@string.Format("{0:0.00}", invoiceItem.PIUnitPrice)</td>
+                                <td style="text-align: right;">@string.Format("{0:0.00}", invoiceItem.PITotal)</td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+
+        <tr id="section4">
+            <td colspan="2">
+                <table id="totalInfo" align="left" width="100%" style="font-size:20px">
+                    <tr>
+                        <td><b>Total Without VAT : </b></td>
+                        <td style="text-align:right; border-top:solid black 1px">
+                            <span>@Html.DisplayFor(m => m.POTotalWithoutVat)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>VAT Charges : </b></td>
+                        <td style="text-align:right">@Html.DisplayFor(m => m.POVat)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Other Charges : </b></td>
+                        <td style="text-align:right"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Total : </b></td>
+                        <td style="text-align:right; border-top:solid black 1px;  border-bottom-style:double">@Html.DisplayFor(m => m.POTotal)</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    }
+
+    <tr>
+        <td colspan="2">
+            <table style="width:100%; text-align:left;font-size:x-large;line-height: 95%;padding-left:5%">
+                <tr><td></td></tr>
+                <tr><td></td></tr>
+                <tr><td>Perpared By: .................................</td></tr>
+                <tr><td>Checked By: .................................</td></tr>
+                <tr><td>Senior Assistant Bursar(Supplies): .................................</td></tr>
+            </table>
+        </td>
+    </tr>
+  
+</table>
